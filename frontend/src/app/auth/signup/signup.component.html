@@ -1,0 +1,67 @@
+<h1 class="text-center title-page-auth">Inscription</h1>
+
+<div class="size-input-form content-center">
+
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmitForm()">
+    <!-- Formcontrol firstName input-->
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Prénom</label>
+      <input type="text" class="form-control" id="firstName" placeholder="Prénom" formControlName="firstName">
+      <div class="alert" *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+        <div *ngIf="firstName?.errors?.['required']">
+          Fristname is required.
+        </div>
+      </div>
+    </div>
+    <!-- Formcontrol lastName input-->
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Nom</label>
+      <input type="text" class="form-control" id="lastName" placeholder="Nom" formControlName="lastName">
+      <div class="alert" *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+        <div *ngIf="lastName?.errors?.['required']">
+          Name is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Formcontrol email input-->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email"
+        required>
+      <div class="alert" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+        <div *ngIf="email?.errors?.['required']">
+          Email is required.
+        </div>
+        <div *ngIf="email?.errors?.['uniqueEmail']">
+          Email is already taken.
+        </div>
+      </div>
+    </div>
+
+    <!-- Formcontrol password input-->
+    <div class="mb-3">
+      <label for="password" class="form-label">Mot de passe</label>
+      <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
+      <div class="alert" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+        <div *ngIf="password?.errors?.['required']">
+          Password is required.
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Success</button>
+    <!-- [disabled]="!signUpForm.valid" -->
+  </form>
+  <p>Form Status: {{ signUpForm.status }}</p>
+
+</div>
+<br>
+<div class=" text-center">
+  <div class="user-list" *ngFor="let user of userList | async">
+    <h3>User existant</h3>
+    <p>{{user.firstName}}</p>
+    <p>{{user.lastName}}</p>
+    <p>{{user.email}}</p>
+  </div>
+</div>
