@@ -18,7 +18,9 @@ class User {
     }
 
     getUserByEmail(userMail) {
-        return db.query('SELECT email FROM user WHERE email =  ? ', userMail);
+        // return db.query(`SELECT user FROM user WHERE email = ${userMail}`);
+
+        return db.query('SELECT user FROM user WHERE email =  ? ', userMail);
     }
 
 }

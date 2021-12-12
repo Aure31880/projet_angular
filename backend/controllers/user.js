@@ -26,14 +26,6 @@ exports.signup = async (req, res, next) => {
                 email: req.body.email
 
             }
-            userModel.getUserByEmail(user.email)
-                .then(userEmail => {
-                    if (userEmail) {
-                        return res.status(403).json({ message: "that email is already exist !" })
-                    }
-                })
-                .catch(error => res.status(500).json(error))
-
             userModel.saveUser(user)
                 .then((result) => res.status(200).json(result))
                 .catch(error => res.status(400).json(error));
@@ -60,12 +52,12 @@ exports.getusers = async (req, res, next) => {
 
 }
 
-exports.getOneUser = async (req, res, next) => {
+exports.getOneUser = async (req, res) => {
     const userModel = new User();
     const email = req.body.email;
     console.log(email);
     await userModel.getUserByEmail(email)
-        .then((result) => res.status(200).json(result))
+        .then(result => res.status(200).json(result[0]))
         .catch(error => res.status(400).json({ error }));
 
 }
