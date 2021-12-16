@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files*/
 
 .size-input-form {
+  max-width: 300px;
+}
+content-center {
   margin: 0px auto;
-  max-width: 250px;
 }
 
 .title-page-auth {

@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const UserRoutes = require('./router/user');
+const ForumRoutes = require('./router/forum');
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,6 +12,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use('/api/auth', UserRoutes);
+// app.use('/api/forum', ForumRoutes);
 // app.use((req, res) => {
 //     res.json({ message: 'Votre requête a bien été reçue !' });
 // });

@@ -1,13 +1,13 @@
 export class User {
-  static firstName: any;
-  static lastName: any;
-  static email: any;
-  static password: any;
+  static firstName: string;
+  static lastName: string;
+  static email: string;
+  static password: string;
   constructor(
     public firstName: string,
     public lastName: string,
     public email: string,
-    public password: string,
+    public password: string
 
   ) { }
 }

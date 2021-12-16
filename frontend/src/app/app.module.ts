@@ -9,6 +9,7 @@ import { ForumComponent } from './forum/forum.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProfileComponent } from './profile/profile.component';
     ForumComponent,
     SignupComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

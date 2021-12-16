@@ -56,13 +56,11 @@ export class SignupComponent implements OnInit {
     //   ]),
     // })
   }
+
   get firstName() { return this.signUpForm.get('firstName') }
   get lastName() { return this.signUpForm.get('lastName') }
   get email() { return this.signUpForm.get('email') }
   get password() { return this.signUpForm.get('password') }
-  initForm() {
-
-  }
 
   onSubmitForm() {
     const firstName = this.signUpForm.get('firstName')?.value;
@@ -88,7 +86,5 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['login'])
         console.log(this.signUpForm.value);
       })
-
   }
-
 }

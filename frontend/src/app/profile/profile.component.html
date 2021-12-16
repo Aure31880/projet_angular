@@ -1,1 +1,39 @@
-<p>profile works!</p>
+<div *ngFor="let client of user">
+  <h2 class="title-profile text-center">Bienvenue {{client.firstName}}</h2>
+
+  <div class="row form-upadate-profile">
+    <div class="col">
+      <div class="size-input-form">
+        <h3>Modifier mot de passe</h3>
+        <form>
+          <!-- Formcontrol password input-->
+          <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="password" placeholder="Mot de passe">
+          </div>
+
+          <!-- Formcontrol new password input-->
+          <div class="mb-3">
+            <label for="password" class="form-label">Nouveau mot de passe</label>
+            <input type="password" class="form-control" id="password" placeholder="Nouveau mot de passe">
+          </div>
+
+          <button type="submit" class="btn btn-success">Success</button>
+        </form>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Informations personnelles</div>
+        <div class="card-body">
+          <h5 class="card-title">Prénom: {{client.firstName}}</h5>
+          <h5 class="card-title">Nom: {{client.lastName}}</h5>
+          <p class="card-text">Email: {{client.email}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <button type="button" (click)="onDisconnect()" class=" btn btn-danger">Déconnexion</button>

@@ -18,9 +18,11 @@ class User {
     }
 
     getUserByEmail(userMail) {
-        // return db.query(`SELECT user FROM user WHERE email = ${userMail}`);
+        // return db.query('SELECT user FROM user WHERE email =  ? ', userMail);
+        let sql = 'SELECT * FROM user WHERE email= ?'
+        sql = mysql.format(sql, userMail)
 
-        return db.query('SELECT user FROM user WHERE email =  ? ', userMail);
+        return db.execute(sql);
     }
 
 }

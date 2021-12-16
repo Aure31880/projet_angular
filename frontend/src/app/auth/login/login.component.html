@@ -1,14 +1,27 @@
 <h1 class="text-center">Login</h1>
 <div class="size-input-form">
-  <form>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Email</label>
       <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email">
+      <div class="alert" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+        <div *ngIf="email?.errors?.['required']">
+          Email is required.
+        </div>
+      </div>
     </div>
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Mot de passe</label>
-      <input type="email" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
+      <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
+      <div class="alert" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+        <div *ngIf="password?.errors?.['required']">
+          Email is required.
+        </div>
+      </div>
     </div>
-    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" (click)="onLogin()" [disabled]="loginForm.invalid" class=" btn btn-success">Success</button>
+    <p>Form Status: {{ loginForm.status }}</p>
+    <button type="button" (click)="onDisconnect()" class=" btn btn-success">Supprimer session</button>
+
   </form>
 </div>

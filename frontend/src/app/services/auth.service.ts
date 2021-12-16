@@ -7,7 +7,6 @@ import { HttpHeaders } from '@angular/common/http';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    Authorization: 'my-auth-token'
   })
 };
 
@@ -16,6 +15,7 @@ const httpOptions = {
 })
 export class AuthService {
   users: User[] = [];
+  private loginUrl = 'http://localhost:3000/api/auth/login';
   private url = 'http://localhost:3000/api/auth/users';
 
   constructor(private http: HttpClient) { }
@@ -24,32 +24,21 @@ export class AuthService {
     return this.http.post<User>('http://localhost:3000/api/auth/signup', user, httpOptions)
   }
 
-  logUser(email: string, password: string) {
-    this.http.get<any>('http://localhost:3000/api/auth/login')
-      .subscribe(res => {
-        const user = res.find((u: any) => {
-          return u.email === email && u.password === password
-        })
-      })
+  loginUser(email: string, password: string) {
+    return this.http.post<any>('http://localhost:3000/api/auth/login', { email: email, password: password })
   }
 
   getAllUsers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.url}`)
       .pipe(map(u => {
-        const newUser = [];
-        for (let user of u) {
-          // console.log(user.email);
-          const email = user.email;
-          newUser.push({ email: email })
-        }
-        return newUser;
+        return u;
       }),
         tap((emailUsers: any) => console.log(emailUsers))
       )
   }
 
   getUserByEmail(email: string) {
-    return this.http.get<any[]>(`${this.url}?email=${email}`)
+    return this.http.get<any[]>('http://localhost:3000/api/auth/users/?=' + email)
   }
 
   // getUserByEmail(email: string): Observable<boolean> {
@@ -59,4 +48,33 @@ export class AuthService {
   //       return of(isTaken).pipe(delay(400))
   //     }))
   // }
+
+  // Save user info in localStorage
+  newUserSession(userInfo: any) {
+    let userSession = this.getUserSession();
+    userSession.push(userInfo);
+    this.saveSessionUser(userSession);
+  }
+
+  // Get user info in localStorage
+  getUserSession() {
+    let userSession = localStorage.getItem('userSession');
+
+    if (userSession == null) {
+      return [];
+    } else {
+      console.log(userSession);
+      return JSON.parse(userSession);
+    }
+  }
+
+  // Save new session user
+  saveSessionUser(userSession: any) {
+    localStorage.setItem('userSession', JSON.stringify(userSession));
+  }
+
+  // Clear localStorage
+  clearSession() {
+    localStorage.clear();
+  }
 }

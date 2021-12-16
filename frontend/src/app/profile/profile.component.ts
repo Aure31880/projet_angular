@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../models/User.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +9,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  user!: User[] | [];
+  constructor(private authService: AuthService,
+    private route: Router) {
 
-  constructor() { }
+  }
 
   ngOnInit(): void {
+    this.getUserInfo();
+  }
+
+  getUserInfo() {
+    const userInfo = this.authService.getUserSession();
+    for (let session of userInfo) {
+      const test = session.email;
+      this.authService.getAllUsers()
+        .subscribe(res => {
+          this.user = res.filter(el => el.email === test)
+          return this.user;
+        })
+    }
+  }
+
+  onDisconnect() {
+    this.authService.clearSession();
+    this.route.navigate(['login']);
   }
 
 }
