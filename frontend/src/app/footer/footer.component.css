@@ -1,0 +1,15 @@
+footer{position:absolute;
+
+bottom:0;
+
+width:100%;
+
+padding-top:50px;
+
+height:50px;}
+
+.logo-group {
+  background-image: url('../images/icon.png');
+  width: 30px;
+  height: 24px;
+}

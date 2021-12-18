@@ -31,9 +31,4 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onDisconnect() {
-    this.authService.clearSession();
-    this.route.navigate(['login']);
-  }
-
 }

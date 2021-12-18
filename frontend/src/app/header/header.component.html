@@ -5,15 +5,23 @@
         class="d-inline-block align-text-top">
     </a>
     <ul class="nav justify-content-end">
-      <li class="nav-item ">
-        <a class="nav-link navBar-color" routerLink="login">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link navBar-color" routerLink="signup">signup</a>
-      </li>
-      <div class="test">
+      <div class=" nav-user-noLog" [ngStyle]="{display: getNavBar()}">
+        <li class="nav-item ">
+          <a class="nav-link navBar-color user-noLog" routerLink="login">Connexion</a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" tabindex="-1">Deconnexion</a>
+          <a class="nav-link navBar-color user-noLog" routerLink="signup">Inscription</a>
+        </li>
+      </div>
+      <div class="nav-online-user" [ngStyle]="{display: getNavBarUser()}">
+        <li class="nav-item">
+          <a class="nav-link button-navLink" tabindex="-1" routerLink="profile">Mon Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link button-navLink" tabindex="-1" routerLink="forum">Forum</a>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link button-navLink" (click)="onDisconnect()" tabindex="-1">Deconnexion</button>
         </li>
       </div>
 

@@ -1,5 +1,5 @@
-<h1 class="text-center">Login</h1>
-<div class="size-input-form">
+<h1 class="text-center">Connexion</h1>
+<div class="size-input-form content-center">
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Email</label>
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <button type="button" (click)="onLogin()" [disabled]="loginForm.invalid" class=" btn btn-success">Success</button>
+    <button type="button" (click)="onLogin()" [disabled]="loginForm.invalid" class=" btn btn-success">Connexion</button>
     <p>Form Status: {{ loginForm.status }}</p>
     <button type="button" (click)="onDisconnect()" class=" btn btn-success">Supprimer session</button>
 

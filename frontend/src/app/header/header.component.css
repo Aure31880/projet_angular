@@ -1,0 +1,9 @@
+.button-navLink {
+  background: none;
+  border: none;
+}
+
+.nav-link {
+  color: #F2F2F2 !important;
+  cursor: pointer;
+}

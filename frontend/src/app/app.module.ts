@@ -10,6 +10,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderComponent } from './header/header.component';
     SignupComponent,
     LoginComponent,
     ProfileComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { HeaderComponent } from './header/header.component';
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'forum', component: ForumComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
     ]),
     ReactiveFormsModule,
