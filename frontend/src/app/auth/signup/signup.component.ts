@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/User.model';
-import { uniqueEmailValidator } from 'src/app/shared/unique-email.directive';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
@@ -34,27 +33,9 @@ export class SignupComponent implements OnInit {
       ],
       email: ['',
         [Validators.required], // sync validator
-        // uniqueEmailValidator(this.authService) // async validator
       ],
       password: ['', Validators.required],
     });
-
-    // this.signUpForm = new FormGroup({
-    //   firstName: new FormControl(this.user.firstName, [
-    //     Validators.required,
-    //   ]),
-    //   lastName: new FormControl(this.user.lastName, [
-    //     Validators.required,
-    //   ]),
-    //   email: new FormControl(this.user.email, [
-    //     Validators.required,
-    //     // asyncValidators: [this.uniqueEmailValidator.validate.bind(this.uniqueEmailValidator)],
-
-    //   ]),
-    //   password: new FormControl(this.user.password, [
-    //     Validators.required,
-    //   ]),
-    // })
   }
 
   get firstName() { return this.signUpForm.get('firstName') }
@@ -68,23 +49,38 @@ export class SignupComponent implements OnInit {
     const email = this.signUpForm.get('email')?.value;
     const password = this.signUpForm.get('password')?.value;
 
-    let userInfo = {
-      firstName: this.signUpForm.get('firstName')?.value,
-      lastName: this.signUpForm.get('lastName')?.value,
-      email: this.signUpForm.get('email')?.value,
-      password: this.signUpForm.get('password')?.value,
-    }
+    // let userInfo = {
+    //   firstName: this.signUpForm.get('firstName')?.value,
+    //   lastName: this.signUpForm.get('lastName')?.value,
+    //   email: this.signUpForm.get('email')?.value,
+    //   password: this.signUpForm.get('password')?.value,
+    // }
 
-    this.authService.addUser(this.signUpForm.value)
-      .subscribe(res => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Inscription réussi',
-          text: 'Vous êtes inscirts !',
-        })
-        this.signUpForm.reset();
-        this.router.navigate(['login'])
-        console.log(this.signUpForm.value);
+    this.authService.getUserByEmail(email)
+      .subscribe(userExist => {
+        const userEmail = userExist.filter(el => el.email === email)
+        console.log(userEmail);
+
+        if (userEmail.length != 0) {
+          Swal.fire({
+            title: 'Erreur email',
+            text: 'Email déjà utilisé !',
+            icon: 'error',
+            timer: 2000
+          })
+        }
+        else {
+          this.authService.addUser(this.signUpForm.value)
+            .subscribe(res => {
+              Swal.fire({
+                icon: 'success',
+                title: 'Inscription réussi',
+                text: 'Vous êtes inscirts !',
+              })
+              this.signUpForm.reset();
+              this.router.navigate(['login'])
+            })
+        }
       })
   }
 }

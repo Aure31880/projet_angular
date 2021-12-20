@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -39,7 +40,15 @@ export class LoginComponent implements OnInit {
         this.authService.newUserSession(userInfo)
         this.loginForm.reset();
         this.router.navigate(['profile'])
-      })
+      }, error => {
+        Swal.fire({
+          title: 'Erreur connexion',
+          text: 'Mot de passe ou identifiant incorrect !',
+          icon: 'error',
+          timer: 3000
+        })
+      }
+      )
   }
 
   onDisconnect() {
