@@ -1,1 +1,11 @@
-<p>forum works!</p>
+<h2 class="text-center">Forum Groupomania</h2>
+
+<div class="comments" *ngFor="let comment of commentList | async ">
+  <div class="card">
+    <h5 class="card-header">Posté le : {{comment.date | date: 'd/M/yy, h:m a'}}</h5>
+    <div class="card-body">
+      <h5 class="card-title" *ngFor="let el of user">De : {{el.firstName}} {{el.lastName}}</h5>
+      <p class="card-text">{{comment.comment}}</p>
+    </div>
+  </div>
+</div>

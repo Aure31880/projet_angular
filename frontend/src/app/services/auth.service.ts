@@ -32,13 +32,15 @@ export class AuthService {
     return this.http.get<any[]>(`${this.url}`)
       .pipe(map(u => {
         return u;
-      }),
+      })
+        ,
         tap((emailUsers: any) => console.log(emailUsers))
       )
   }
 
   getUserByEmail(email: string) {
     return this.http.get<any[]>('http://localhost:3000/api/auth/users/?=' + email)
+
   }
 
   // getUserByEmail(email: string): Observable<boolean> {
@@ -63,7 +65,7 @@ export class AuthService {
     if (userSession == null) {
       return [];
     } else {
-      console.log(userSession);
+      // console.log(userSession);
       return JSON.parse(userSession);
     }
   }

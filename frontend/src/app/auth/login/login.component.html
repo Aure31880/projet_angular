@@ -20,8 +20,9 @@
       </div>
     </div>
     <button type="button" (click)="onLogin()" [disabled]="loginForm.invalid" class=" btn btn-success">Connexion</button>
-    <p>Form Status: {{ loginForm.status }}</p>
-    <button type="button" (click)="onDisconnect()" class=" btn btn-success">Supprimer session</button>
+    <br>
+    <br>
+    <button type="button" (click)="onDisconnect()" class=" btn btn-danger">Supprimer session</button>
 
   </form>
 </div>

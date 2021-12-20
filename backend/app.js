@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use('/api/auth', UserRoutes);
-// app.use('/api/forum', ForumRoutes);
+app.use('/api/forum', ForumRoutes);
 // app.use((req, res) => {
 //     res.json({ message: 'Votre requête a bien été reçue !' });
 // });

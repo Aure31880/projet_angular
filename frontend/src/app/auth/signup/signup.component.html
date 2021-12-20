@@ -50,18 +50,15 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Success</button>
-    <!-- [disabled]="!signUpForm.valid" -->
+    <button type="submit" class="btn btn-success" [disabled]="!signUpForm.valid">Inscription</button>
   </form>
-  <p>Form Status: {{ signUpForm.status }}</p>
-
 </div>
-<br>
-<div class=" text-center">
+
+<!-- <div class=" text-center">
   <div class="user-list" *ngFor="let user of userList | async">
     <h3>User existant</h3>
     <p>{{user.firstName}}</p>
     <p>{{user.lastName}}</p>
     <p>{{user.email}}</p>
   </div>
-</div>
+</div> -->

@@ -22,10 +22,13 @@ export class ProfileComponent implements OnInit {
   getUserInfo() {
     const userInfo = this.authService.getUserSession();
     for (let session of userInfo) {
-      const test = session.email;
+      const email = session.email;
+
       this.authService.getAllUsers()
         .subscribe(res => {
-          this.user = res.filter(el => el.email === test)
+          console.log(res);
+
+          this.user = res.filter(el => el.email === email)
           return this.user;
         })
     }
