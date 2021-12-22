@@ -3,7 +3,16 @@
   border: none;
 }
 
+/* .navbar {
+  background: #fd2d01 !important;
+} */
+
 .nav-link {
-  color: #F2F2F2 !important;
+  color: #212529 !important;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #ffd7d7 !important;
   cursor: pointer;
 }

@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const { json } = require('express');
 const express = require('express');
 const User = require('../models/User');
-const validateEmail = require('../controllers/validator');
 const jwt = require('jsonwebtoken');
 
 
@@ -43,7 +42,9 @@ exports.login = (req, res, next) => {
     const userModel = new User()
     userModel.getUserByEmail(req.body.email)
         .then(result => {
-            console.log(result);
+            // console.log(result[0][0].id);
+            const user = result[0][0];
+            console.log(user.id);
             if (!result) {
                 return res.status(401).json({ message: "Utilisateur introuvable !" });
             }
@@ -54,9 +55,9 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({ message: "Mot de passe incorrect !" });
                     }
                     res.status(200).json({
-                        userId: result.id,
+                        userId: user.id,
                         token: jwt.sign(
-                            { userId: result.id },
+                            { userId: user.id },
                             'RANDOM_TOKEN_SECRET',
                             { expiresIn: '24h' }
                         )
@@ -73,7 +74,6 @@ exports.getusers = async (req, res, next) => {
     await userModel.getAllUser()
         .then(result => res.status(201).json(result[0]))
         .catch(() => res.status(400).json({ message: 'Erreur get user by email !' }));
-
 }
 
 exports.getOneUser = async (req, res) => {

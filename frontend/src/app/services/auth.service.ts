@@ -43,14 +43,6 @@ export class AuthService {
 
   }
 
-  // getUserByEmail(email: string): Observable<boolean> {
-  //   const emailExist = this.http.get<any[]>(`${this.url}?email=${email}`)
-  //     .pipe(map(userEmail => {
-  //       const isTaken = userEmail.includes(email);
-  //       return of(isTaken).pipe(delay(400))
-  //     }))
-  // }
-
   // Save user info in localStorage
   newUserSession(userInfo: any) {
     let userSession = this.getUserSession();

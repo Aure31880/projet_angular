@@ -10,17 +10,32 @@ import { ForumService } from '../services/forum.service';
   styleUrls: ['./forum.component.css'],
 })
 export class ForumComponent implements OnInit {
-  forum!: Forum[] | [];
   user!: User[] | [];
-
+  session = Array();
   constructor(private forumService: ForumService,
     private authService: AuthService) { }
-
 
   commentList = this.forumService.getAllPost();
 
   ngOnInit(): void {
     this.UserComment();
+    this.getSessionInfo();
+  }
+
+  getSessionInfo() {
+    const info = this.authService.getUserSession();
+    console.log(info[0]);
+    for (let data of info[0]) {
+      const id = data.id;
+      const first = data.firstName;
+      const name = data.lastName;
+      let arr = {
+        id: id,
+        firstName: first,
+        lastName: name,
+      }
+      this.session.push(arr)
+    }
   }
 
   UserComment() {
@@ -36,8 +51,6 @@ export class ForumComponent implements OnInit {
             })
         }
       })
-
-
   }
 
 

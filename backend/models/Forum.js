@@ -13,6 +13,10 @@ class Forum {
 
     }
 
+    sendPost(post) {
+        return db.query('INSERT INTO forum SET ?', post)
+    }
+
 }
 
 module.exports = Forum;

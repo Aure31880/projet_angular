@@ -1,6 +1,25 @@
 <h2 class="text-center">Forum Groupomania</h2>
 
+<div class="form-comment">
+  <h3 class="title-form">Ajouter un commentaire</h3>
+  <form>
+    <div class="input-group mb-3">
+      <div class="input-group mb-3">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let info of session">De : {{ info.firstName }} {{ info.lastName }}</li>
+        </ul>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">Commentaire :</span>
+        <textarea class="form-control" aria-label="With textarea"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success marginTop-btn">Envoyer</button>
+    </div>
+  </form>
+</div>
+
 <div class="comments" *ngFor="let comment of commentList | async ">
+  <h3 class="text-center">Derniers commentaires</h3>
   <div class="card">
     <h5 class="card-header">Posté le : {{comment.date | date: 'd/M/yy, h:m a'}}</h5>
     <div class="card-body">

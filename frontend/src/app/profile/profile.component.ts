@@ -21,17 +21,21 @@ export class ProfileComponent implements OnInit {
 
   getUserInfo() {
     const userInfo = this.authService.getUserSession();
-    for (let session of userInfo) {
-      const email = session.email;
+    console.log(userInfo[0]);
+    this.user = userInfo[0]
 
-      this.authService.getAllUsers()
-        .subscribe(res => {
-          console.log(res);
+    // for (let session of userInfo) {
+    //   this.user = session
+    // const email = session.email;
 
-          this.user = res.filter(el => el.email === email)
-          return this.user;
-        })
-    }
+    // this.authService.getAllUsers()
+    //   .subscribe(res => {
+    //     console.log(res);
+
+    //     this.user = res.filter(el => el.email === email)
+    //     return this.user;
+    //   })
+    // }
   }
 
 }

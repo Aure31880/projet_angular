@@ -6,3 +6,17 @@
   background: #212529;
   color: #F2F2F2;
 }
+
+.title-form {
+  font-size: 22px
+}
+
+.form-comment {
+  margin-top: 5%;
+  width: 650px;
+}
+
+.marginTop-btn {
+  margin-top: 10px;
+}
+

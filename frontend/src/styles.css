@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files*/
-
+h2 {
+  text-shadow: 1px 1px 1px ;
+}
+h1, h2, h3, h4, h5 {
+  font-family: "Poppins", sans-serif;
+}
+a, p, input, button {
+  font-family: "Roboto", sans-serif;
+}
 .size-input-form {
   max-width: 300px;
 }

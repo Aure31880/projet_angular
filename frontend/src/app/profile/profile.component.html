@@ -1,4 +1,4 @@
-<div class="background-profile"></div>
+<!-- <div class="background-profile"></div> -->
 
 <div class="profil-user-title" *ngFor="let client of user">
   <h2 class="title-profile text-center">Bienvenue {{client.firstName}}</h2>
@@ -18,7 +18,7 @@
     <div class="form-upadate-profile content-center">
       <div class="col">
         <div class="size-input-form">
-          <h3>Modifier mot de passe</h3>
+          <h3 class="title-form">Modifier mot de passe</h3>
           <form>
             <!-- Formcontrol password input-->
             <div class="mb-3">
@@ -30,6 +30,10 @@
             <div class="mb-3">
               <label for="password" class="form-label">Nouveau mot de passe</label>
               <input type="password" class="form-control" id="password" placeholder="Nouveau mot de passe">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Confirmez nouveau mot de passe</label>
+              <input type="password" class="form-control" id="password" placeholder="Confirmez nouveau mot de passe">
             </div>
 
             <button type="submit" class="btn btn-success">Modifier</button>

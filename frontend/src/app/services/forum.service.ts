@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { Forum } from '../models/Forum.forum';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +11,7 @@ export class ForumService {
 
   constructor(private http: HttpClient) { }
 
+
   getAllPost(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:3000/api/forum/posts')
       .pipe(map(data => {
@@ -19,6 +19,10 @@ export class ForumService {
       }),
         tap((postUser: any) => console.log(postUser))
       )
+  }
+
+  createPost(forum: Forum) {
+    return this.http.post<Forum>('http://localhost:3000/api/forum/posts', forum);
   }
 
 

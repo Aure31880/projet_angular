@@ -37,9 +37,20 @@ export class LoginComponent implements OnInit {
     this.loginForm.value
     this.authService.loginUser(email, password)
       .subscribe(res => {
-        this.authService.newUserSession(userInfo)
-        this.loginForm.reset();
-        this.router.navigate(['profile'])
+        this.authService.getUserByEmail(email)
+          .subscribe(user => {
+            if (user) {
+              console.log(user);
+              const newSession = user.filter(el => el.email === email);
+              console.log(newSession);
+
+              this.authService.newUserSession(newSession)
+              this.loginForm.reset();
+              this.router.navigate(['profile'])
+            }
+          }, error => {
+            throw new Error('Bad request')
+          })
       }, error => {
         Swal.fire({
           title: 'Erreur connexion',
@@ -47,8 +58,7 @@ export class LoginComponent implements OnInit {
           icon: 'error',
           timer: 3000
         })
-      }
-      )
+      })
   }
 
   onDisconnect() {
