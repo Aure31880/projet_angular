@@ -13,6 +13,10 @@ class Forum {
         return db.query('INSERT INTO forum SET ?', post);
     }
 
+    deletePost(postId) {
+        return db.query('DELETE FROM forum WHERE ID = ?', postId)
+    }
+
 }
 
 module.exports = Forum;

@@ -8,6 +8,6 @@ router.post('/', ForumController.createPost);
 router.get('/', ForumController.getAllPost);
 
 // router.put('/:id', auth, ForumController.updatePost);
-// router.delete('/:id', auth, ForumController.deletePost);
+router.delete('/:id', ForumController.deletePost);
 
 module.exports = router;

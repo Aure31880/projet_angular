@@ -19,7 +19,6 @@ exports.createPost = async (req, res, next) => {
     const idUser = req.body.idUser;
     const comment = req.body.comment;
 
-
     const arrCommenttoSend = {
         idUser: idUser,
         comment: comment,
@@ -29,4 +28,11 @@ exports.createPost = async (req, res, next) => {
     await forumService.sendComment(arrCommenttoSend)
         .then(() => res.status(201).json({ message: "Votre message à bien été envoyé !" }))
         .catch(() => res.status(400).json({ message: "Erreur lors de l'envoie du commentaire !" }));
+}
+
+exports.deletePost = (req, res, next) => {
+    console.log(req.params);
+    // if (!req.params.postId) {
+    //     return res.status(400).send(new Error('Bad Request !'))
+    // }
 }
