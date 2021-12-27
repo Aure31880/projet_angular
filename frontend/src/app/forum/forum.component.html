@@ -27,5 +27,6 @@
       <p class="card-text">{{comment.comment}}</p>
     </div>
   </div>
-  <button type="submit" class="btn btn-danger supp" [ngStyle]="{display: isAdminDeleteBtn()}">Supprimer</button>
+  <button type="submit" class="btn btn-danger supp" id="delete-post" [ngStyle]="{display: isAdminDeleteBtn()}"
+    value="{{ comment.id }}" (click)="deletePost(comment)">Supprimer</button>
 </div>

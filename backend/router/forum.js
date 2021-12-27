@@ -6,8 +6,8 @@ const ForumController = require('../controllers/forum');
 
 router.post('/', ForumController.createPost);
 router.get('/', ForumController.getAllPost);
+router.delete('/:id', ForumController.deletePost);
 
 // router.put('/:id', auth, ForumController.updatePost);
-router.delete('/:id', ForumController.deletePost);
 
 module.exports = router;

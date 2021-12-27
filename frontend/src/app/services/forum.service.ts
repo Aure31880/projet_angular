@@ -31,4 +31,8 @@ export class ForumService {
     return this.http.post<Forum>('http://localhost:3000/api/forum', forum);
   }
 
+  deletePost(postId: number): Observable<Forum> {
+    return this.http.delete<Forum>('http://localhost:3000/api/forum/' + postId)
+  }
+
 }

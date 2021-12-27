@@ -5,7 +5,7 @@ class Forum {
     constructor() { }
 
     getPosts() {
-        return db.query('SELECT forum.idUser, forum.comment, forum.date, user.firstName, user.lastName FROM forum JOIN user ON forum.idUser = user.id ORDER BY date DESC');
+        return db.query('SELECT forum.id, forum.idUser, forum.comment, forum.date, user.firstName, user.lastName FROM forum JOIN user ON forum.idUser = user.id ORDER BY date DESC');
 
     }
 

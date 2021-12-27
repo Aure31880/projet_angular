@@ -31,8 +31,13 @@ exports.createPost = async (req, res, next) => {
 }
 
 exports.deletePost = (req, res, next) => {
-    console.log(req.params);
-    // if (!req.params.postId) {
-    //     return res.status(400).send(new Error('Bad Request !'))
-    // }
+    if (!req.params.id) {
+        return res.status(400).send(new Error('Bad Request !'))
+    }
+    const postId = req.params.id;
+    console.log(req.params.id);
+    forumService.deletePost(postId)
+        .then(() => res.status(201).json({ message: "Commentaire supprimé !" }))
+        .catch(error => res.status(400).json(error))
+
 }

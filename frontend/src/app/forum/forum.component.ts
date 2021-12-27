@@ -5,6 +5,7 @@ import { User } from '../models/User.model';
 import { AuthService } from '../services/auth.service';
 import { ForumService } from '../services/forum.service';
 import Swal from 'sweetalert2'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-forum',
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2'
 export class ForumComponent implements OnInit {
   postComment!: FormGroup;
   user!: User[] | [];
+  forum!: Forum[] | [];
   session = Array();
 
   constructor(private forumService: ForumService,
@@ -89,6 +91,31 @@ export class ForumComponent implements OnInit {
       return 'none';
     }
   }
-}
 
+  deletePost(post: any) {
+    console.log(post.id);
+    this.forumService.deletePost(post.id)
+      .subscribe(res => {
+        Swal.fire({
+          title: 'Êtes-vous sur?',
+          text: "Supprimer commentaire",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Confirmez!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: 'Supprmer !',
+              text: 'le commentaire à été supprimé.',
+              icon: 'success',
+              timer: 5000
+            })
+            return location.reload()
+          }
+        })
+      })
+  }
+}
 
