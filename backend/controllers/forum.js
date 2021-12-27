@@ -10,10 +10,23 @@ exports.getAllPost = async (req, res, next) => {
 }
 
 exports.createPost = async (req, res, next) => {
-    if (!req.body.idUser | !req.body.comment) {
+    if (!req.body.idUser ||
+        !req.body.comment) {
         res.status(404).send(new Error('Bad request !'))
     }
-    await forumService.sendComment()
-        .then(result => res.json(201).json({ message: "Votre message à bien été envoyé !" }))
-        .catch(() => res.json(400).json(error));
+    // console.log(req.body.idUser);
+    // console.log(req.body.comment);
+    const idUser = req.body.idUser;
+    const comment = req.body.comment;
+
+
+    const arrCommenttoSend = {
+        idUser: idUser,
+        comment: comment,
+        date: new Date()
+    }
+
+    await forumService.sendComment(arrCommenttoSend)
+        .then(() => res.status(201).json({ message: "Votre message à bien été envoyé !" }))
+        .catch(() => res.status(400).json({ message: "Erreur lors de l'envoie du commentaire !" }));
 }

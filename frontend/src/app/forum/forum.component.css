@@ -11,6 +11,10 @@
   font-size: 22px
 }
 
+.border-list {
+  border: none !important;
+}
+
 .form-comment {
   margin-top: 5%;
   width: 650px;
@@ -20,3 +24,6 @@
   margin-top: 10px;
 }
 
+.supp {
+  margin-top: 10px;
+}

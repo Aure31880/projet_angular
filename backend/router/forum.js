@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const ForumController = require('../controllers/forum');
-const auth = require('../middleware/auth');
+// const auth = require('../middleware/auth');
 
-router.get('/posts', ForumController.getAllPost);
-router.post('/posts', ForumController.createPost);
+router.post('/', ForumController.createPost);
+router.get('/', ForumController.getAllPost);
+
 // router.put('/:id', auth, ForumController.updatePost);
 // router.delete('/:id', auth, ForumController.deletePost);
 

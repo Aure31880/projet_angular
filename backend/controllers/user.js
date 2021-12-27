@@ -3,6 +3,7 @@ const { json } = require('express');
 const express = require('express');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const userModel = new User();
 
 
 exports.signup = (req, res, next) => {
@@ -12,8 +13,7 @@ exports.signup = (req, res, next) => {
         !req.body.password) {
         return res.status(400).json({ message: "empty field !" })
     }
-
-    const userModel = new User();
+    console.log(req.body.email);
     const saltRounds = 10;
     bcrypt.hash(req.body.password, saltRounds)
         .then(hash => {
@@ -23,13 +23,12 @@ exports.signup = (req, res, next) => {
                 lastName: req.body.lastName,
                 password: hash,
                 email: req.body.email
-
             }
             userModel.saveUser(user)
                 .then((result) => res.status(200).json(result))
                 .catch(error => res.status(400).json(error));
         })
-        // .then(() => res.status(200).json({ message: "Vous êtes inscript " }))
+        .then(() => res.status(200).json({ message: "Vous êtes inscript " }))
         .catch(error => res.status(500).json(error))
 }
 
@@ -39,7 +38,6 @@ exports.login = (req, res, next) => {
         res.status(400).json({ message: "Field empty !" })
     }
     console.log(req.body.email);
-    const userModel = new User()
     userModel.getUserByEmail(req.body.email)
         .then(result => {
             // console.log(result[0][0].id);
@@ -69,15 +67,12 @@ exports.login = (req, res, next) => {
 }
 
 exports.getusers = async (req, res, next) => {
-    const userModel = new User();
-
     await userModel.getAllUser()
         .then(result => res.status(201).json(result[0]))
         .catch(() => res.status(400).json({ message: 'Erreur get user by email !' }));
 }
 
 exports.getOneUser = async (req, res) => {
-    const userModel = new User();
     const email = req.body.email;
     console.log(email);
     await userModel.getUserByEmail(email)

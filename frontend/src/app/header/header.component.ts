@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit {
 
 
   getNavBarUser() {
-    const test = this.authService.getUserSession()
-    if (test.length === 0) {
+    const session = this.authService.getUserSession()
+    if (session.length === 0) {
       return 'none';
     } else {
       return 'flex';
@@ -28,8 +28,8 @@ export class HeaderComponent implements OnInit {
   }
 
   getNavBar() {
-    const test = this.authService.getUserSession()
-    if (test.length === 0) {
+    const session = this.authService.getUserSession()
+    if (session.length === 0) {
       return 'flex';
     } else {
       return 'none';

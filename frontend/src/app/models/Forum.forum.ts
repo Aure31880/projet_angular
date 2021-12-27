@@ -1,11 +1,9 @@
 export class Forum {
-  static id_user: number;
-  static commentaire: string;
-  static date: Date;
+  static idUser: number;
+  static comment: string;
   constructor(
-    public id_user: number,
-    public commentaire: string,
-    public date: Date
+    public idUser: number,
+    public comment: string,
   ) { }
 
 }
