@@ -5,7 +5,6 @@ import { User } from '../models/User.model';
 import { AuthService } from '../services/auth.service';
 import { ForumService } from '../services/forum.service';
 import Swal from 'sweetalert2'
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-forum',
@@ -25,6 +24,7 @@ export class ForumComponent implements OnInit {
   commentList = this.forumService.getAllPost();
 
   ngOnInit(): void {
+    this.isUserDeleteBtn();
     this.isAdminDeleteBtn()
     this.getSessionInfo();
     this.postComment = this.fb.group({
@@ -92,6 +92,16 @@ export class ForumComponent implements OnInit {
     }
   }
 
+  isUserDeleteBtn() {
+    if (true) {
+      return 'flex'
+    } else {
+      return 'none';
+    }
+  }
+
+
+
   deletePost(post: any) {
     console.log(post.id);
     this.forumService.deletePost(post.id)
@@ -99,7 +109,7 @@ export class ForumComponent implements OnInit {
         Swal.fire({
           title: 'Êtes-vous sur?',
           text: "Supprimer commentaire",
-          icon: 'warning',
+          icon: 'info',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',

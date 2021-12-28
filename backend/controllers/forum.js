@@ -14,11 +14,9 @@ exports.createPost = async (req, res, next) => {
         !req.body.comment) {
         res.status(404).send(new Error('Bad request !'))
     }
-    // console.log(req.body.idUser);
-    // console.log(req.body.comment);
+
     const idUser = req.body.idUser;
     const comment = req.body.comment;
-
     const arrCommenttoSend = {
         idUser: idUser,
         comment: comment,
