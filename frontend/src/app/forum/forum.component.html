@@ -31,6 +31,4 @@
     <div class="" *ngIf="info.id == comment.idUser || info.admin === 1">
       <button type="submit" class="btn btn-danger supp" id="delete-post" value="{{ comment.id }}"
         (click)="deletePost(comment)">Supprimer</button>
-      <!-- <button type="submit" class="btn btn-danger supp" [ngStyle]="{display: isUserDeleteBtn()}">Supprimer</button> -->
-    </div>
   </div>

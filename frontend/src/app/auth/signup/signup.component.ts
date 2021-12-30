@@ -49,13 +49,6 @@ export class SignupComponent implements OnInit {
     const email = this.signUpForm.get('email')?.value;
     const password = this.signUpForm.get('password')?.value;
 
-    // let userInfo = {
-    //   firstName: this.signUpForm.get('firstName')?.value,
-    //   lastName: this.signUpForm.get('lastName')?.value,
-    //   email: this.signUpForm.get('email')?.value,
-    //   password: this.signUpForm.get('password')?.value,
-    // }
-
     this.authService.getUserByEmail(email)
       .subscribe(userExist => {
         const userEmail = userExist.filter(el => el.email === email)

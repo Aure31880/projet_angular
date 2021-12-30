@@ -24,7 +24,6 @@ export class ForumComponent implements OnInit {
   commentList = this.forumService.getAllPost();
 
   ngOnInit(): void {
-    this.isUserDeleteBtn();
     this.isAdminDeleteBtn()
     this.getSessionInfo();
     this.postComment = this.fb.group({
@@ -91,16 +90,6 @@ export class ForumComponent implements OnInit {
       return 'none';
     }
   }
-
-  isUserDeleteBtn() {
-    if (true) {
-      return 'flex'
-    } else {
-      return 'none';
-    }
-  }
-
-
 
   deletePost(post: any) {
     console.log(post.id);

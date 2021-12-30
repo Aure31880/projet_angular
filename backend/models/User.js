@@ -2,13 +2,7 @@ const db = require("../config/database");
 const mysql = require("mysql2");
 
 class User {
-    constructor(id, firstName, lastName, email, password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
+    constructor() { }
 
     saveUser(user) {
         return db.query('INSERT INTO user SET ?', user);
@@ -24,6 +18,18 @@ class User {
         sql = mysql.format(sql, userMail)
 
         return db.execute(sql);
+    }
+
+    getUserById(idUser) {
+        return db.query('SELECT * FROM user WHERE id = ?', idUser)
+    }
+
+    deleteUser(idUser) {
+        return db.query('DELETE FROM user WHERE id = ?', idUser);
+    }
+
+    updatePassword(user) {
+        return db.query('UPDATE user SET password where id = ?', user)
     }
 
 }

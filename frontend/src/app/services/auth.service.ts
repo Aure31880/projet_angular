@@ -43,6 +43,17 @@ export class AuthService {
 
   }
 
+  deleteUserAccount(idUser: number) {
+    return this.http.delete<User>('http://localhost:3000/api/auth/users/' + idUser)
+
+  }
+
+  updatePass(idUser: number, oldPassword: string, newPassword: string) {
+    return this.http.put<User>('http://localhost:3000/api/auth/users/' + idUser, { oldPassword, newPassword })
+  }
+
+  // LOCAL STORAGE SESSION USER
+
   // Save user info in localStorage
   newUserSession(userInfo: any) {
     let userSession = this.getUserSession();
