@@ -28,8 +28,12 @@ class User {
         return db.query('DELETE FROM user WHERE id = ?', idUser);
     }
 
-    updatePassword(user) {
-        return db.query('UPDATE user SET password where id = ?', user)
+    updatePassword(updateInfoUser) {
+        // return db.query('UPDATE user SET password = ? where id = ?')
+        let sql = 'UPDATE user SET password = ? WHERE id = ?'
+        sql = mysql.format(sql, updateInfoUser);
+
+        return db.execute(sql);
     }
 
 }

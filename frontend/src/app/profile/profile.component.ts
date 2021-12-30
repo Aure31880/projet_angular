@@ -96,13 +96,9 @@ export class ProfileComponent implements OnInit {
       this.authService.updatePass(idUser, oldPass, newPass)
         .subscribe(res => {
           console.log(res);
-
+          Swal.fire('Mot de passe modifier !')
         })
-
     }
-
-    // Renvoyer ces valeurs à la methode service
-
   }
 
   get password() { return this.updatePassForm.get('password') }

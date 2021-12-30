@@ -26,7 +26,7 @@ exports.signup = (req, res, next) => {
                 admin: 0
             }
             userModel.saveUser(user)
-                .then((result) => res.status(200).json(result))
+                .then((result) => res.status(201).json(result))
                 .catch(error => res.status(400).json(error));
         })
         // .then(() => res.status(200).json({ message: "Vous êtes inscript " }))
@@ -108,10 +108,38 @@ exports.updatePassword = (req, res, next) => {
     const idUser = req.params.id;
     const oldPass = req.body.oldPassword;
     const newPass = req.body.newPassword;
-    console.log(idUser);
-    console.log(oldPass);
-    console.log(newPass);
+
     // Comparer le oldPass avec methode compare de mysql si ok alors on continue sinon on crash
+    userModel.getUserById(idUser)
+        .then(result => {
+            if (!result) {
+                res.status(400).json(new Error('Bad request, unknown id !'))
+            } else {
+                const passToCompare = result[0][0].password;
+                bcrypt.compare(oldPass, passToCompare)
+                    .then(validPass => {
+                        if (!validPass) {
+                            res.status(400).json(new Error('Bad request, mot de passe invalid !'))
+                        } else {
+                            const saltRounds = 10;
+                            bcrypt.hash(newPass, saltRounds)
+                                .then(newUserPass => {
+                                    if (!newUserPass) {
+                                        res.status(400).json(new Error('Bad request !'))
+                                    } else {
+                                        let arrToUpdate = [newUserPass, idUser]
+                                        userModel.updatePassword(arrToUpdate)
+                                            .then(result => res.status(201).json(result))
+                                            .catch(error => res.status(400).json(error));
+                                    }
+                                })
+                                .catch(error => res.status(500).json(error));
+                        }
+                    })
+                    .catch(error => res.status(400).json(error));
+            }
+        })
+        .catch(error => res.status(500).json(error));
 
     // On récupère l'id user et le newPass pour l'envoyer à la methode updatepass du model user
 }
