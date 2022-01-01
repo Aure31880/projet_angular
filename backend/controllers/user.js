@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const { json } = require('express');
 const express = require('express');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
@@ -29,7 +28,6 @@ exports.signup = (req, res, next) => {
                 .then((result) => res.status(201).json(result))
                 .catch(error => res.status(400).json(error));
         })
-        // .then(() => res.status(200).json({ message: "Vous êtes inscript " }))
         .catch(error => res.status(500).json(error))
 }
 
@@ -38,12 +36,10 @@ exports.login = (req, res, next) => {
     if (!req.body.email || !req.body.password) {
         res.status(400).json({ message: "Field empty !" })
     }
-    console.log(req.body.email);
     userModel.getUserByEmail(req.body.email)
         .then(result => {
             // console.log(result[0][0].id);
             const user = result[0][0];
-            console.log(user.id);
             if (!result) {
                 return res.status(401).json({ message: "Utilisateur introuvable !" });
             }
@@ -140,7 +136,5 @@ exports.updatePassword = (req, res, next) => {
             }
         })
         .catch(error => res.status(500).json(error));
-
-    // On récupère l'id user et le newPass pour l'envoyer à la methode updatepass du model user
 }
 

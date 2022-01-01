@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { User } from '../models/User.model';
 import { HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
+    // 'Authorization':
   })
 };
 
@@ -17,8 +18,11 @@ export class AuthService {
   users: User[] = [];
   private loginUrl = 'http://localhost:3000/api/auth/login';
   private url = 'http://localhost:3000/api/auth/users';
+  currentUser: any;
+  token: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,) { }
+
 
   addUser(user: User) {
     return this.http.post<User>('http://localhost:3000/api/auth/signup', user, httpOptions)
@@ -63,7 +67,7 @@ export class AuthService {
 
   // Get user info in localStorage
   getUserSession() {
-    let userSession = localStorage.getItem('userSession');
+    let userSession = localStorage.getItem('currentSession');
 
     if (userSession == null) {
       return [];
@@ -75,7 +79,7 @@ export class AuthService {
 
   // Save new session user
   saveSessionUser(userSession: any) {
-    localStorage.setItem('userSession', JSON.stringify(userSession));
+    localStorage.setItem('currentSession', JSON.stringify(userSession));
   }
 
   // Clear localStorage

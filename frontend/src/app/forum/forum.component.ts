@@ -36,8 +36,8 @@ export class ForumComponent implements OnInit {
   getSessionInfo() {
     const info = this.authService.getUserSession();
     let arr = null;
-    console.log(info[0]);
-    for (let data of info[0]) {
+    console.log(info[0].userInfo);
+    for (let data of info[0].userInfo) {
       const id = data.id;
       const first = data.firstName;
       const name = data.lastName;
@@ -83,7 +83,7 @@ export class ForumComponent implements OnInit {
   isAdminDeleteBtn() {
     const userSession = this.authService.getUserSession();
 
-    const isAdmin = userSession[0][0].admin;
+    const isAdmin = userSession[0].userInfo.admin;
     if (isAdmin === 1) {
       return 'flex';
     } else {

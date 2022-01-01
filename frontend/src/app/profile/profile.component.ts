@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
   getUserInfo() {
     const userInfo = this.authService.getUserSession();
     console.log(userInfo[0]);
-    this.user = userInfo[0]
+    this.user = userInfo[0].userInfo
 
   }
 
