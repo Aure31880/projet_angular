@@ -8,8 +8,29 @@ h1, h2, h3, h4, h5 {
 a, p, input, button {
   font-family: "Roboto", sans-serif;
 }
+
+html,body {
+  margin: 0;
+  padding: 0;
+  background: #1f272f
+  /* background-image: url('/assets/background2.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0%; */
+
+}
+
+.loginForm {
+  background: #212529;
+  height: auto;
+  border-radius: 15px;
+}
+
+.alert {
+  color: #FFFFFF;
+  height: 10px
+}
 .size-input-form {
-  max-width: 300px;
+  max-width: 300px !important;
 }
 .content-center {
   margin: 0px auto;
@@ -18,4 +39,13 @@ a, p, input, button {
 .title-page-auth {
   margin-bottom: 30px;
 }
+
+.width-input {
+  margin: 10px 10px;
+}
+
+.form-label {
+  color: white;
+}
+
 

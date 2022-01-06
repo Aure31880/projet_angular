@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router) { }
 
-  userList = this.authService.getAllUsers();
+  // userList = this.authService.getAllUsers();
 
   ngOnInit(): void {
 

@@ -39,15 +39,22 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         this.authService.getUserByEmail(email)
           .subscribe(user => {
+            console.log(user);
+
             if (user) {
               console.log(user);
               const newSession = user.filter(el => el.email === email);
-              console.log(newSession);
-              this.authService.token = res.token
+              // this.authService.token = res.token
+              // for (let el of newSession) {
+              //   el.token = res.token
+
+              // }
               const userCurrent = {
                 userInfo: newSession,
-                token: this.authService.token
+                token: res.token
               }
+              console.log(newSession);
+
               this.authService.newUserSession(userCurrent)
               this.loginForm.reset();
               this.router.navigate(['profile'])

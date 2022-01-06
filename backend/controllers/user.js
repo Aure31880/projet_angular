@@ -75,7 +75,6 @@ exports.getOneUser = async (req, res, next) => {
     await userModel.getUserByEmail(email)
         .then(result => res.status(200).json(result))
         .catch(error => res.status(400).json({ error }));
-
 }
 
 exports.deleteUserAccount = async (req, res) => {
@@ -97,7 +96,6 @@ exports.deleteUserAccount = async (req, res) => {
                 .catch(error => res.status(400).json(error));
         })
         .catch(error => res.status(500).json(error))
-
 }
 
 exports.updatePassword = (req, res, next) => {

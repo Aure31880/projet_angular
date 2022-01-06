@@ -1,9 +1,10 @@
 <h2 class="text-center">Forum Groupomania</h2>
 
-<div class="" *ngFor="let info of session">
+<div class="body-forum" *ngFor="let info of session">
   <div>
-    <h3 class="title-form">Ajouter un commentaire</h3>
     <form class="form-comment" [formGroup]="postComment" (ngSubmit)="onSubmitPost()">
+      <h3 class="title-form">Ajouter un commentaire</h3>
+
       <div class="input-group mb-3">
         <p class="list-group-item border-list">De : {{ info.firstName }} {{ info.lastName }}</p>
         <div class="input-group">
@@ -18,9 +19,9 @@
       </div>
     </form>
   </div>
+  <h3 class="text-center">Derniers commentaires</h3>
 
   <div class="comments" *ngFor="let comment of commentList | async ">
-    <h3 class="text-center">Derniers commentaires</h3>
     <div class="card">
       <h5 class="card-header">Posté le : {{comment.date | date: 'd/M/yy, h:m a'}}</h5>
       <div class="card-body">
@@ -31,4 +32,6 @@
     <div class="" *ngIf="info.id == comment.idUser || info.admin === 1">
       <button type="submit" class="btn btn-danger supp" id="delete-post" value="{{ comment.id }}"
         (click)="deletePost(comment)">Supprimer</button>
+    </div>
   </div>
+</div>

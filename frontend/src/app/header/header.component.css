@@ -1,3 +1,9 @@
+
+.navbar {
+  position: relative;
+  z-index: 200;
+}
+
 .button-navLink {
   background: none;
   border: none;

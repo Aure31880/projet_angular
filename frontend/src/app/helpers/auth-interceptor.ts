@@ -15,8 +15,11 @@ export class AuthInterceptor implements HttpInterceptor {
   //Avant l'envoi d'une requête HTTP l'interceptor va ajouter le token à l'authentification
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //Récupération du token
-    const token = this.authService.token
-    //On clone la requête en y ajoutant un headers Authorization avec la chaine de caractères Bearer
+    const token = this.authService.token;
+    console.log(token);
+
+
+    // On clone la requête en y ajoutant un headers Authorization avec la chaine de caractères Bearer
     req = req.clone({
       setHeaders: {
         'Authorization': `Bearer ${token}`

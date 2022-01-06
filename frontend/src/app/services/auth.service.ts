@@ -47,6 +47,11 @@ export class AuthService {
 
   }
 
+  // getUserById(id: number) {
+  //   return this.http.get<any[]>('http://localhost:3000/api/auth/users/?=' + id)
+
+  // }
+
   deleteUserAccount(idUser: number) {
     return this.http.delete<User>('http://localhost:3000/api/auth/users/' + idUser)
 
@@ -85,5 +90,12 @@ export class AuthService {
   // Clear localStorage
   clearSession() {
     localStorage.clear();
+  }
+
+  getToken() {
+    const session = this.getUserSession()[0].token;
+    this.token = session
+    console.log(this.token);
+
   }
 }

@@ -21,5 +21,15 @@
 
 .card-info-user {
   float: right;
-  width: 250px;
+  width: 290px;
 }
+
+.card.text-light {
+  border-radius: 15px;
+}
+
+.comments{
+  margin-bottom: 30px !important;
+}
+
+

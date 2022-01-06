@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.getToken()
     this.getUserInfo();
     this.updatePassForm = this.fb.group({
       password: ['',
@@ -38,7 +39,7 @@ export class ProfileComponent implements OnInit {
   getUserInfo() {
     const userInfo = this.authService.getUserSession();
     console.log(userInfo[0]);
-    this.user = userInfo[0].userInfo
+    this.user = userInfo[0].userInfo;
 
   }
 
@@ -79,7 +80,9 @@ export class ProfileComponent implements OnInit {
     const newPass = this.updatePassForm.get('newPassword')?.value;
     const confirmPass = this.updatePassForm.get('confirmPassword')?.value;
     const id = this.authService.getUserSession();
-    const idUser = id[0][0].id;
+    console.log(id[0].userInfo[0].id);
+
+    const idUser = id[0].userInfo[0].id;
     console.log(idUser);
     console.log(oldPass);
     console.log(newPass);
@@ -89,7 +92,6 @@ export class ProfileComponent implements OnInit {
       oldPassord: oldPass,
       newPassword: newPass
     }
-
 
     // Vérifier si le newPassword et le confirmPassword correspondent
     if (newPass == confirmPass) {

@@ -1,51 +1,56 @@
-<h1 class="text-center title-page-auth">Inscription</h1>
-<div class="size-input-form content-center">
-  <form [formGroup]="signUpForm" (ngSubmit)="onSubmitForm()">
+<div class="back-profile layer">
+  <div class="bloc-form">
+    <h1 class="text-center title-page-auth color-title">Inscription</h1>
+    <div class="size-input-form content-center loginForm">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmitForm()">
 
-    <!-- Formcontrol firstName input-->
-    <div class="mb-3">
-      <label for="firstName" class="form-label">Prénom</label>
-      <input type="text" class="form-control" id="firstName" placeholder="Prénom" formControlName="firstName">
-      <div class="alert" *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
-        <div *ngIf="firstName?.errors?.['required']">
-          Renseignez un prénom.
+        <!-- Formcontrol firstName input-->
+        <div class="mb-3 width-input">
+          <label for="firstName" class="form-label">Prénom</label>
+          <input type="text" class="form-control" id="firstName" placeholder="Prénom" formControlName="firstName">
+          <div class="alert" *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+            <div *ngIf="firstName?.errors?.['required']">
+              Renseignez un prénom.
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Formcontrol lastName input-->
-    <div class="mb-3">
-      <label for="lastName" class="form-label">Nom</label>
-      <input type="text" class="form-control" id="lastName" placeholder="Nom" formControlName="lastName">
-      <div class="alert" *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
-        <div *ngIf="lastName?.errors?.['required']">
-          Renseignez un nom.
+        <!-- Formcontrol lastName input-->
+        <div class="mb-3 width-input">
+          <label for="lastName" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="lastName" placeholder="Nom" formControlName="lastName">
+          <div class="alert" *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+            <div *ngIf="lastName?.errors?.['required']">
+              Renseignez un nom.
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Formcontrol email input-->
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email"
-        required>
-      <div class="alert" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-        <div *ngIf="email?.errors?.['required']">
-          Renseignez un email.
+        <!-- Formcontrol email input-->
+        <div class="mb-3 width-input">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email"
+            required>
+          <div class="alert" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+            <div *ngIf="email?.errors?.['required']">
+              Renseignez un email.
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Formcontrol password input-->
-    <div class="mb-3">
-      <label for="password" class="form-label">Mot de passe</label>
-      <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
-      <div class="alert" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-        <div *ngIf="password?.errors?.['required']">
-          Renseignez un mot de passe.
+        <!-- Formcontrol password input-->
+        <div class="mb-3 width-input">
+          <label for="password" class="form-label">Mot de passe</label>
+          <input type="password" class="form-control" id="password" placeholder="Mot de passe"
+            formControlName="password">
+          <div class="alert" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+            <div *ngIf="password?.errors?.['required']">
+              Renseignez un mot de passe.
+            </div>
+          </div>
         </div>
-      </div>
+        <button type="submit" class="btn btn-success width-input" [disabled]="!signUpForm.valid">Inscription</button>
+      </form>
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="!signUpForm.valid">Inscription</button>
-  </form>
+  </div>
 </div>

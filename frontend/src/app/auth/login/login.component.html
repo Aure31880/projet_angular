@@ -1,9 +1,9 @@
-<div class="background-profile">
+<div class="back-profile layer">
 
-  <h1 class="text-center">Connexion</h1>
+  <h1 class="text-center title-page-auth color-title">Connexion</h1>
   <div class="size-input-form content-center">
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <div class="mb-3">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="loginForm">
+      <div class="mb-3 width-input">
         <label for="exampleFormControlInput1" class="form-label">Email</label>
         <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email">
         <div class="alert" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
@@ -12,7 +12,7 @@
           </div>
         </div>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 width-input">
         <label for="exampleFormControlInput1" class="form-label">Mot de passe</label>
         <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
         <div class="alert" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
@@ -22,7 +22,7 @@
         </div>
       </div>
       <button type="button" (click)="onLogin()" [disabled]="loginForm.invalid"
-        class=" btn btn-success">Connexion</button>
+        class=" btn btn-success width-input btnLogin">Connexion</button>
     </form>
   </div>
 </div>
