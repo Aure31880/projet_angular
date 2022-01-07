@@ -3,7 +3,9 @@ const express = require('express');
 const app = express();
 const UserRoutes = require('./router/user');
 const ForumRoutes = require('./router/forum');
+const mongoSanitize = require('express-mongo-sanitize');
 
+// Middleware for header requests
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -11,10 +13,11 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.json());
+// Clean data user
+app.use(mongoSanitize());
+
+// Route for api calls
 app.use('/api/auth', UserRoutes);
 app.use('/api/forum', ForumRoutes);
-// app.use((req, res) => {
-//     res.json({ message: 'Votre requête a bien été reçue !' });
-// });
 
 module.exports = app;

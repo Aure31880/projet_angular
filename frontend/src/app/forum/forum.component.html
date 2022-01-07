@@ -28,10 +28,11 @@
         <h5 class="card-title">De : {{comment.firstName}} {{comment.lastName}}</h5>
         <p class="card-text">{{comment.comment}}</p>
       </div>
+      <div class="" *ngIf="info.id == comment.idUser || info.admin === 1">
+        <button type="submit" class="btn btn-danger supp" id="delete-post" value="{{ comment.id }}"
+          (click)="deletePost(comment)">Supprimer</button>
+      </div>
     </div>
-    <div class="" *ngIf="info.id == comment.idUser || info.admin === 1">
-      <button type="submit" class="btn btn-danger supp" id="delete-post" value="{{ comment.id }}"
-        (click)="deletePost(comment)">Supprimer</button>
-    </div>
+
   </div>
 </div>

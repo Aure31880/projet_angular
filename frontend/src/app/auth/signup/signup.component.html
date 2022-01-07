@@ -12,6 +12,12 @@
             <div *ngIf="firstName?.errors?.['required']">
               Renseignez un prénom.
             </div>
+            <div *ngIf="firstName?.errors?.['minlength']">
+              Prénom trop court.
+            </div>
+            <div *ngIf="firstName?.errors?.['pattern']">
+              Prénom incorrect.
+            </div>
           </div>
         </div>
 
@@ -22,6 +28,12 @@
           <div class="alert" *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
             <div *ngIf="lastName?.errors?.['required']">
               Renseignez un nom.
+            </div>
+            <div *ngIf="lastName?.errors?.['minlength']">
+              Nom trop court.
+            </div>
+            <div *ngIf="lastName?.errors?.['pattern']">
+              Nom incorrect.
             </div>
           </div>
         </div>
@@ -35,6 +47,9 @@
             <div *ngIf="email?.errors?.['required']">
               Renseignez un email.
             </div>
+            <div *ngIf="email?.errors?.['email']">
+              Renseignez un email.
+            </div>
           </div>
         </div>
 
@@ -46,6 +61,9 @@
           <div class="alert" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
             <div *ngIf="password?.errors?.['required']">
               Renseignez un mot de passe.
+            </div>
+            <div *ngIf="password?.errors?.['minlength']">
+              Mot de passe trop court.
             </div>
           </div>
         </div>

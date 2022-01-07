@@ -25,6 +25,19 @@
   margin-top: 10px;
 }
 
+.card {
+  border-radius: 20px;
+}
+
+.card-header {
+  border-radius: 20px 20px 0 0;
+}
+
+.card-title {
+  color: #000;
+}
+
 .supp {
-  margin-top: 10px;
+  margin: 15px;
+  float: right;
 }

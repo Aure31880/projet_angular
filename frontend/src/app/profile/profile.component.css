@@ -19,13 +19,19 @@
   font-size: 26px;
 }
 
-.card-info-user {
+/* .card-info-user {
   float: right;
   width: 290px;
-}
+} */
 
 .card.text-light {
   border-radius: 15px;
+}
+
+.deletebtn {
+  border: none;
+  background: none;
+  color: red;
 }
 
 .comments{
