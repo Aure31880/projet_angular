@@ -20,8 +20,6 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router) { }
 
-  // userList = this.authService.getAllUsers();
-
   ngOnInit(): void {
 
     this.signUpForm = this.fb.group({
@@ -62,7 +60,6 @@ export class SignupComponent implements OnInit {
     this.authService.getUserByEmail(email)
       .subscribe(userExist => {
         const userEmail = userExist.filter(el => el.email === email)
-        console.log(userEmail);
 
         if (userEmail.length != 0) {
           Swal.fire({

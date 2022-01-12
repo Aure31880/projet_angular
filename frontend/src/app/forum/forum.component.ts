@@ -29,7 +29,7 @@ export class ForumComponent implements OnInit {
     this.getSessionInfo();
     this.postComment = this.fb.group({
       comment: ['',
-        Validators.required, // sync validator
+        Validators.required,
       ]
     });
   }
@@ -37,10 +37,7 @@ export class ForumComponent implements OnInit {
   getSessionInfo() {
     const info = this.authService.getUserSession();
     let arr = null;
-    console.log(info[0].userInfo);
     for (let data of info[0].userInfo) {
-      console.log(data);
-
       const id = data.id;
       const first = data.firstName;
       const name = data.lastName;
@@ -53,7 +50,6 @@ export class ForumComponent implements OnInit {
         admin: admin
       }
       this.session.push(arr)
-      console.log(this.session);
 
     }
   }
@@ -87,7 +83,6 @@ export class ForumComponent implements OnInit {
 
   isAdminDeleteBtn() {
     const userSession = this.authService.getUserSession();
-    console.log(userSession[0]);
 
     const isAdmin = userSession[0].admin;
     if (isAdmin === 1) {

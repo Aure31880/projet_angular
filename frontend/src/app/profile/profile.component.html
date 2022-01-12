@@ -1,5 +1,4 @@
 <div class="profil-user-title" *ngFor="let client of user">
-
   <div class="profil-user">
     <div class="card-info-user">
       <div class="card text-light bg-dark mb-3">
@@ -14,65 +13,16 @@
     </div>
   </div>
 
-
-
-
   <div class="row">
-    <div class="col">
-      <div class="profil-user">
-        <div class="card-info-user">
-          <div class="card text-light bg-dark mb-3">
-            <div class=" card-header">Informations personnelles</div>
-            <div class="card-body">
-              <form [formGroup]="updatePassForm" (ngSubmit)="submitUpdatePass()" class="loginForm">
-                <!-- Formcontrol password input-->
-                <div class="mb-3 width-input">
-                  <label for="password" class="form-label">Mot de passe</label>
-                  <input type="password" class="form-control" name="password" placeholder="Mot de passe"
-                    formControlName="password">
-                  <div class="alert" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-                    <div *ngIf="password?.errors?.['required']">
-                      Votre mot de passe actuel.
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Formcontrol new password input-->
-                <div class="mb-3 width-input">
-                  <label for="password" class="form-label">Nouveau mot de passe</label>
-                  <input type="password" class="form-control" name="newPassword" placeholder="Nouveau mot de passe"
-                    formControlName="newPassword">
-                  <div class="alert" *ngIf="newPassword?.invalid && (newPassword?.dirty || newPassword?.touched)">
-                    <div *ngIf="newPassword?.errors?.['required']">
-                      Choisissez un nouveau mot de passe.
-                    </div>
-                  </div>
-                </div>
-                <div class="mb-3 width-input">
-                  <label for="password" class="form-label">Confirmez nouveau mot de passe</label>
-                  <input type="password" class="form-control" name="confirmPassword"
-                    placeholder="Confirmez nouveau mot de passe" formControlName="confirmPassword">
-                  <div class="alert"
-                    *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)">
-                    <div *ngIf="confirmPassword?.errors?.['required']">
-                      Confirmez le mot de passe.
-                    </div>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-success width-input"
-                  [disabled]="!updatePassForm.valid">Modifier</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="col test-2">
+      <app-update-email></app-update-email>
     </div>
 
     <div class="col">
       <div class="profil-user">
         <div class="card-info-user">
           <div class="card text-light bg-dark mb-3">
-            <div class=" card-header">Informations personnelles</div>
+            <div class=" card-header">modification mot de passe</div>
             <div class="card-body">
               <form [formGroup]="updatePassForm" (ngSubmit)="submitUpdatePass()" class="loginForm">
                 <!-- Formcontrol password input-->
@@ -119,76 +69,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-<!-- <div class="profil-user-title" *ngFor="let client of user">
-  <h2 class="title-profile text-center">Bienvenue {{client.firstName}}</h2>
-  <div class="row">
-    <div class="col">
-      <div class="profil-user">
-        <div class="card-info-user">
-          <div class="card text-light bg-dark mb-3">
-            <div class=" card-header">Informations personnelles</div>
-            <div class="card-body">
-              <h5 class="card-title">Prénom: {{client.firstName}}</h5>
-              <h5 class="card-title">Nom: {{client.lastName}}</h5>
-              <p class="card-text">Email: {{client.email}}</p>
-              <button type="submit" class="btn btn-danger" (click)="deleteAccount()">Supprimer compte</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-upadate-profile content-center">
-        <div class="col">
-          <div class="size-input-form">
-            <h3 class="title-form">Modifier mot de passe</h3>
-            <form [formGroup]="updatePassForm" (ngSubmit)="submitUpdatePass()" class="loginForm"> -->
-<!-- Formcontrol password input-->
-<!-- <div class="mb-3 width-input">
-                <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" name="password" placeholder="Mot de passe"
-                  formControlName="password">
-                <div class="alert" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-                  <div *ngIf="password?.errors?.['required']">
-                    Votre mot de passe actuel.
-                  </div>
-                </div>
-              </div> -->
-
-<!-- Formcontrol new password input-->
-<!-- <div class="mb-3 width-input">
-                <label for="password" class="form-label">Nouveau mot de passe</label>
-                <input type="password" class="form-control" name="newPassword" placeholder="Nouveau mot de passe"
-                  formControlName="newPassword">
-                <div class="alert" *ngIf="newPassword?.invalid && (newPassword?.dirty || newPassword?.touched)">
-                  <div *ngIf="newPassword?.errors?.['required']">
-                    Choisissez un nouveau mot de passe.
-                  </div>
-                </div>
-              </div>
-              <div class="mb-3 width-input">
-                <label for="password" class="form-label">Confirmez nouveau mot de passe</label>
-                <input type="password" class="form-control" name="confirmPassword"
-                  placeholder="Confirmez nouveau mot de passe" formControlName="confirmPassword">
-                <div class="alert"
-                  *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)">
-                  <div *ngIf="confirmPassword?.errors?.['required']">
-                    Confirmez le mot de passe.
-                  </div>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-success width-input"
-                [disabled]="!updatePassForm.valid">Modifier</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

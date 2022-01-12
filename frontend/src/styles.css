@@ -18,21 +18,28 @@ html,body {
 
 }
 
+/* General */
+.alert {
+  color: #FFFFFF;
+  height: 10px
+}
+
+.content-center {
+  margin: 0px auto;
+}
+
+.form-label {
+  color: white;
+}
+
+/* Auth pages */
 .loginForm {
   background: #212529ad;
   height: auto;
   border-radius: 15px;
 }
-
-.alert {
-  color: #FFFFFF;
-  height: 10px
-}
 .size-input-form {
   max-width: 300px !important;
-}
-.content-center {
-  margin: 0px auto;
 }
 
 .title-page-auth {
@@ -43,8 +50,7 @@ html,body {
   margin: 10px 10px;
 }
 
-.form-label {
-  color: white;
+/* Cards profil */
+.card.text-light {
+  border-radius: 15px;
 }
-
-
