@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const UserRoutes = require('./router/user');
 const ForumRoutes = require('./router/forum');
+const PostImageRoutes = require('./router/postImg');
 const mongoSanitize = require('express-mongo-sanitize');
 
 // Middleware for header requests
@@ -19,5 +20,6 @@ app.use(mongoSanitize());
 // Route for api calls
 app.use('/api/auth', UserRoutes);
 app.use('/api/forum', ForumRoutes);
+app.use('/api/posts', PostImageRoutes);
 
 module.exports = app;
