@@ -1,6 +1,5 @@
 const db = require('../config/database');
 
-
 class postImg {
 
     constructor() { }
