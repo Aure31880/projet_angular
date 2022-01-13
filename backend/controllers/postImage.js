@@ -1,7 +1,7 @@
 const express = require('express');
-const Post = require('../models/PostImg');
+const PostImg = require('../models/PostImg');
 
-const post = new Post();
+const post = new PostImg();
 
 exports.getPosts = (req, res, next) => {
     console.log('Test request all posts');

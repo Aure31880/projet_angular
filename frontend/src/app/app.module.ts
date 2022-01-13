@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthInterceptor } from './helpers/auth-interceptor';
 import { UpdateEmailComponent } from './update-email/update-email.component';
+import { PostImageComponent } from './post-image/post-image.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { UpdateEmailComponent } from './update-email/update-email.component';
     ProfileComponent,
     HeaderComponent,
     UpdateEmailComponent,
+    PostImageComponent,
   ],
   imports: [
     BrowserModule,

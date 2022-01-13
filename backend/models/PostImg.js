@@ -1,6 +1,6 @@
 const db = require('../config/database');
 
-class postImg {
+class PostImg {
 
     constructor() { }
 
@@ -14,3 +14,5 @@ class postImg {
     }
 
 }
+
+module.exports = PostImg;
