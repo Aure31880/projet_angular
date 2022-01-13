@@ -27,6 +27,10 @@ exports.createPost = async (req, res, next) => {
         .catch(() => res.status(400).json({ message: "Erreur lors de l'envoie du commentaire !" }));
 }
 
+exports.createPostWithfile = (req, res, next) => {
+    console.log(req.body);
+}
+
 exports.deletePost = (req, res, next) => {
     if (!req.params.id) {
         return res.status(400).send(new Error('Bad Request !'))

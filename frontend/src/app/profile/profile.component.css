@@ -7,12 +7,7 @@
   background-position: center;
 } */
 
-.testFlex {
-  display: flex;
-  justify-content: space-around;
-}
-
-.test-2 {
+.top {
   margin-top: 50px;
 }
 
