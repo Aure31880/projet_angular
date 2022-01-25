@@ -16,8 +16,6 @@ export class HeaderComponent implements OnInit {
 
   }
 
-
-
   getNavBarUser() {
     const session = this.authService.getUserSession()
     if (session.length === 0) {

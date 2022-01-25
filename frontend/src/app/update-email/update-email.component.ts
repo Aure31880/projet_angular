@@ -46,17 +46,14 @@ export class UpdateEmailComponent implements OnInit {
       email: oldEmail,
       newEmail: newEmail
     }
-    console.log(arrForUpdate);
     if (newEmail == confirmEmail) {
       // Update methode from authService
       this.authService.updateEmail(idUser, arrForUpdate)
         .subscribe(res => {
-          console.log(res);
           Swal.fire('Adresse email modifié !')
         })
     } else {
       Swal.fire('Email non similaire !')
-      console.log(('Email non similaire !'));
     }
   }
 

@@ -81,7 +81,6 @@ export class AuthService {
     if (userSession == null) {
       return [];
     } else {
-      // console.log(userSession);
       return JSON.parse(userSession);
     }
   }
@@ -99,7 +98,6 @@ export class AuthService {
   getToken() {
     const session = this.getUserSession()[0].token;
     this.token = session
-    console.log(this.token);
-
   }
+
 }

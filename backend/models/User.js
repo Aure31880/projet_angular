@@ -13,8 +13,6 @@ class User {
     }
 
     getUserByEmail(userMail) {
-        // return db.query('SELECT email FROM user WHERE email = ?', userMail)
-
         let sql = 'SELECT * FROM user WHERE email= ?'
         sql = mysql.format(sql, userMail)
 

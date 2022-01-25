@@ -38,7 +38,6 @@ export class ProfileComponent implements OnInit {
 
   getUserInfo() {
     const userInfo = this.authService.getUserSession();
-    console.log(userInfo[0]);
     this.user = userInfo[0].userInfo;
 
   }
@@ -91,7 +90,6 @@ export class ProfileComponent implements OnInit {
     if (newPass == confirmPass) {
       this.authService.updatePass(idUser, oldPass, newPass)
         .subscribe(res => {
-          console.log(res);
           Swal.fire('Mot de passe modifié !')
         })
     }
