@@ -16,10 +16,14 @@ export class ForumComponent implements OnInit {
   user!: User[] | [];
   forum!: Forum[] | [];
   session = Array();
+  imagePreview!: string;
 
-  constructor(private forumService: ForumService,
+
+  constructor(
+    private forumService: ForumService,
     private authService: AuthService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder
+  ) { }
 
   commentList = this.forumService.getAllPost();
 
@@ -28,9 +32,7 @@ export class ForumComponent implements OnInit {
     this.isAdminDeleteBtn()
     this.getSessionInfo();
     this.postComment = this.fb.group({
-      comment: ['',
-        Validators.required,
-      ]
+      comment: [''],
     });
   }
 
@@ -50,24 +52,22 @@ export class ForumComponent implements OnInit {
         admin: admin
       }
       this.session.push(arr)
-
     }
   }
 
   onSubmitPost() {
     let arrPostToSend = null;
     const comment = this.postComment.get('comment')?.value;
+    const imageUrl = this.postComment.get('image')?.value;
+    console.log(imageUrl);
 
     const user = this.session;
     for (let el of user) {
       const idUser = el.id;
       arrPostToSend = {
         idUser: idUser,
-        comment: comment
+        comment: comment,
       }
-      console.log(arrPostToSend);
-      console.log(this.postComment.value);
-
       this.forumService.createPost(arrPostToSend)
         .subscribe(res => {
           Swal.fire({
@@ -80,6 +80,21 @@ export class ForumComponent implements OnInit {
         })
     }
   }
+
+  // addImage(event: any) {
+  //   const file = event.target.files[0];
+  //   console.log(file.name);
+
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     console.log(reader.result);
+
+  //     if (this.postComment.get('image')?.value) {
+  //       this.imagePreview = reader.result as string;
+  //     }
+  //   };
+  //   reader.readAsDataURL(file);
+  // }
 
   isAdminDeleteBtn() {
     const userSession = this.authService.getUserSession();

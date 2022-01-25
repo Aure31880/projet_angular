@@ -3,8 +3,8 @@ const express = require('express');
 const app = express();
 const UserRoutes = require('./router/user');
 const ForumRoutes = require('./router/forum');
-const PostImageRoutes = require('./router/postImg');
 const mongoSanitize = require('express-mongo-sanitize');
+const path = require('path');
 
 // Middleware for header requests
 app.use((req, res, next) => {
@@ -17,9 +17,11 @@ app.use(express.json());
 // Clean data user
 app.use(mongoSanitize());
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
+
 // Route for api calls
 app.use('/api/auth', UserRoutes);
 app.use('/api/forum', ForumRoutes);
-app.use('/api/posts', PostImageRoutes);
 
 module.exports = app;

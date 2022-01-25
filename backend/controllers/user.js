@@ -136,3 +136,19 @@ exports.updatePassword = (req, res, next) => {
         .catch(error => res.status(500).json(error));
 }
 
+exports.updateEmail = (req, res, next) => {
+    const emailToCheck = req.body.infoToUpdate.newEmail;
+    const idUser = req.body.infoToUpdate.idUser;
+    let infoForUpdate = [emailToCheck, idUser]
+    userModel.getUserByEmail(infoForUpdate)
+        .then(result => {
+            if (!result[0][0]) {
+                userModel.updateUserInfo(infoForUpdate)
+                    .then(result => res.status(200).json({ message: 'Email modifier !' }))
+            } else {
+                console.log('Already exists !');
+            }
+        })
+
+}
+

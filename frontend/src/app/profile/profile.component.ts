@@ -80,13 +80,7 @@ export class ProfileComponent implements OnInit {
     const newPass = this.updatePassForm.get('newPassword')?.value;
     const confirmPass = this.updatePassForm.get('confirmPassword')?.value;
     const id = this.authService.getUserSession();
-    console.log(id[0].userInfo[0].id);
-
     const idUser = id[0].userInfo[0].id;
-    console.log(idUser);
-    console.log(oldPass);
-    console.log(newPass);
-    console.log(confirmPass);
     let arrForUpdate = {
       idUser: idUser,
       oldPassord: oldPass,
@@ -98,7 +92,7 @@ export class ProfileComponent implements OnInit {
       this.authService.updatePass(idUser, oldPass, newPass)
         .subscribe(res => {
           console.log(res);
-          Swal.fire('Mot de passe modifier !')
+          Swal.fire('Mot de passe modifié !')
         })
     }
   }

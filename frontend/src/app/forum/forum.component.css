@@ -3,6 +3,10 @@
   margin-bottom: 30px;
 }
 
+.post-image{
+  width: 200px;
+}
+
 .card-header {
   background: #212529;
   color: #F2F2F2;

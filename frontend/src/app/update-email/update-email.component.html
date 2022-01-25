@@ -3,22 +3,38 @@
     <div class="card text-light bg-dark mb-3">
       <div class=" card-header">Modification email</div>
       <div class="card-body">
-        <form class="loginForm">
+        <form class="updateEmail" [formGroup]="updateEmailForm" (ngSubmit)="submitUpdateEmail()">
           <!-- Formcontrol password input-->
           <div class="mb-3 width-input">
-            <label for="password" class="form-label">Email</label>
-            <input type="password" class="form-control" name="password" placeholder="Mot de passe">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" placeholder="Email" formControlName="email">
+            <div class="alert" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+              <div *ngIf="email?.errors?.['required']">
+                Entrez votre email actuel.
+              </div>
+            </div>
           </div>
 
           <!-- Formcontrol new password input-->
           <div class="mb-3 width-input">
-            <label for="password" class="form-label">Nouveau email</label>
-            <input type="password" class="form-control" name="newPassword" placeholder="Nouveau mot de passe">
+            <label for="email" class="form-label">Nouveau email</label>
+            <input type="email" class="form-control" name="newEmail" placeholder="Nouvelle adresse email"
+              formControlName="newEmail">
+            <div class="alert" *ngIf="newEmail?.invalid && (newEmail?.dirty || newEmail?.touched)">
+              <div *ngIf="newEmail?.errors?.['required']">
+                Choisissez une nouvelle adresse email.
+              </div>
+            </div>
           </div>
           <div class="mb-3 width-input">
-            <label for="password" class="form-label">Confirmez email</label>
-            <input type="password" class="form-control" name="confirmPassword"
-              placeholder="Confirmez nouveau mot de passe">
+            <label for="email" class="form-label">Confirmez email</label>
+            <input type="email" class="form-control" name="confirmEmail" placeholder="Confirmez email"
+              formControlName="confirmEmail">
+            <div class="alert" *ngIf="confirmEmail?.invalid && (confirmEmail?.dirty || confirmEmail?.touched)">
+              <div *ngIf="confirmEmail?.errors?.['required']">
+                Confirmez votre email.
+              </div>
+            </div>
           </div>
           <button type="submit" class="btn btn-success width-input">Modifier</button>
         </form>

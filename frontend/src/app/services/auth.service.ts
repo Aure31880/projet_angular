@@ -61,6 +61,10 @@ export class AuthService {
     return this.http.put<User>('http://localhost:3000/api/auth/users/' + idUser, { oldPassword, newPassword })
   }
 
+  updateEmail(idUser: number, infoToUpdate: any) {
+    return this.http.put<any>('http://localhost:3000/api/auth/users/email/' + idUser, { infoToUpdate })
+  }
+
   // LOCAL STORAGE SESSION USER
 
   // Save user info in localStorage

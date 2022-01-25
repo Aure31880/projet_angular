@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../models/User.model';
 import { AuthService } from '../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-email',
@@ -9,7 +10,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./update-email.component.css']
 })
 export class UpdateEmailComponent implements OnInit {
-  updateEmail!: FormGroup;
+  updateEmailForm!: FormGroup;
   user!: User[] | [];
 
 
@@ -19,20 +20,48 @@ export class UpdateEmailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.updateEmail = this.fb.group({
+    this.updateEmailForm = this.fb.group({
       email: ['',
         Validators.required,
-        Validators.email
       ],
       newEmail: ['',
         Validators.required,
-        Validators.email
       ],
       confirmEmail: ['',
         Validators.required,
-        Validators.email
       ],
     })
   }
+
+  submitUpdateEmail() {
+    const oldEmail = this.updateEmailForm.get('email')?.value;
+    const newEmail = this.updateEmailForm.get('newEmail')?.value;
+    const confirmEmail = this.updateEmailForm.get('confirmEmail')?.value;
+    const id = this.authService.getUserSession();
+
+    const idUser = id[0].userInfo[0].id;
+
+    let arrForUpdate = {
+      idUser: idUser,
+      email: oldEmail,
+      newEmail: newEmail
+    }
+    console.log(arrForUpdate);
+    if (newEmail == confirmEmail) {
+      // Update methode from authService
+      this.authService.updateEmail(idUser, arrForUpdate)
+        .subscribe(res => {
+          console.log(res);
+          Swal.fire('Adresse email modifié !')
+        })
+    } else {
+      Swal.fire('Email non similaire !')
+      console.log(('Email non similaire !'));
+    }
+  }
+
+  get email() { return this.updateEmailForm.get('email') }
+  get newEmail() { return this.updateEmailForm.get('newEmail') }
+  get confirmEmail() { return this.updateEmailForm.get('confirmEmail') }
 
 }

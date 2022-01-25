@@ -1,7 +1,6 @@
 const multer = require('multer');
 const fs = require('fs');
-
-const dir = './post-images'
+const dir = './images'
 
 const MIME_TYPES = {
     'image/jpg': 'jpg',
@@ -11,11 +10,11 @@ const MIME_TYPES = {
 }
 
 const storage = multer.diskStorage({
-    desitnation: (req, file, callback) => {
+    destination: (req, file, callback) => {
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir)
         }
-        callback(null, 'post-images');
+        callback(null, 'images');
     },
     filename: (req, file, callback) => {
         const name = file.originalname.split(' ').join('_');

@@ -13,6 +13,8 @@ class User {
     }
 
     getUserByEmail(userMail) {
+        // return db.query('SELECT email FROM user WHERE email = ?', userMail)
+
         let sql = 'SELECT * FROM user WHERE email= ?'
         sql = mysql.format(sql, userMail)
 
@@ -29,6 +31,13 @@ class User {
 
     updatePassword(updateInfoUser) {
         let sql = 'UPDATE user SET password = ? WHERE id = ?'
+        sql = mysql.format(sql, updateInfoUser);
+
+        return db.execute(sql);
+    }
+
+    updateUserInfo(updateInfoUser) {
+        let sql = 'UPDATE user SET email = ? WHERE id = ?'
         sql = mysql.format(sql, updateInfoUser);
 
         return db.execute(sql);
