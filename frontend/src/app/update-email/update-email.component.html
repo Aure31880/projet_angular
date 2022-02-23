@@ -36,7 +36,8 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-success width-input">Modifier</button>
+          <button type="submit" [disabled]="!updateEmailForm.valid"
+            class="btn btn-success width-input">Modifier</button>
         </form>
       </div>
     </div>

@@ -1,10 +1,10 @@
-<h2 class="text-center">Forum Groupomania</h2>
+<h2 class="title-forum-page text-center">Forum Groupomania</h2>
 
 <!-- SECTION FORM ADD COMMENT -->
 <div class="body-forum" *ngFor="let info of session">
   <div>
     <form class="form-comment" [formGroup]="postComment" (ngSubmit)="onSubmitPost()">
-      <h3 class="title-form">Ajouter un commentaire</h3>
+      <h3 class="title-forum-page title-form">Ajouter un commentaire</h3>
       <div class="input-group mb-3">
         <div class="input-group">
           <input type="hidden" value="{{ info.id }}" name="idUser" id="idUser">
@@ -20,7 +20,7 @@
   </div>
 
   <!-- SECTION COMMENTS -->
-  <h3 class="text-center">Derniers commentaires</h3>
+  <h3 class="title-forum-page text-center">Derniers commentaires</h3>
   <div class="comments" *ngFor="let comment of commentList | async ">
     <div class="card">
       <h5 class="card-header">Posté le : {{comment.date | date: 'd/M/yy, h:m a'}}</h5>

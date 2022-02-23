@@ -4,7 +4,7 @@ h2 {
 }
 h1, h2, h3, h4, h5 {
   font-family: "Poppins", sans-serif;
-  color: #FFFF;
+  color: #F2F2F2;
 }
 a, p, input, button {
   font-family: "Roboto", sans-serif;
@@ -13,8 +13,9 @@ a, p, input, button {
 html,body {
   margin: 0;
   padding: 0;
-  background: #1f1c18;
-  background: linear-gradient(to right, #FD1D02, #1f1c18); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background: #1f1c18;
+  background: linear-gradient(to right, #FD1D02, #1f1c18); */
+   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
@@ -34,7 +35,7 @@ html,body {
 
 /* Auth pages */
 .loginForm {
-  background: #212529ad;
+  background: #212529f3;
   height: auto;
   border-radius: 15px;
 }
@@ -43,7 +44,8 @@ html,body {
 }
 
 .title-page-auth {
-  margin-bottom: 30px;
+  margin-top: 70px
+  /* margin-bottom: 30px; */
 }
 
 .width-input {
@@ -53,4 +55,8 @@ html,body {
 /* Cards profil */
 .card.text-light {
   border-radius: 15px;
+}
+
+.color-title {
+  color: #212529f3
 }
