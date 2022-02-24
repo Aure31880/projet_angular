@@ -33,4 +33,10 @@
   margin-bottom: 30px !important;
 }
 
+@media screen and (max-width: 770px) {
+  .mobile-display {
+    display: block !important;
+  }
+}
+
 
