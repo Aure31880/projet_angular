@@ -92,6 +92,8 @@ export class ProfileComponent implements OnInit {
         .subscribe(res => {
           Swal.fire('Mot de passe modifié !')
         })
+    } else {
+      Swal.fire('Les mots de passe ne sont pas identiques !')
     }
   }
 

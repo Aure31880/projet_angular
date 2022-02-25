@@ -31,19 +31,6 @@ export class ForumService {
     return this.http.post<Forum>('http://localhost:3000/api/forum', forum);
   }
 
-  // createPostWithFile(forum: Forum, image: File) {
-  //   // const commentData = new FormData();
-  //   // commentData.append('comment', JSON.stringify(forum));
-  //   // commentData.append('image', image);
-  //   // this.http.post<any>('http://localhost:3000/api/stuff', commentData)
-  //   //   .pipe(map(data => {
-  //   //     return data
-  //   //   }))
-
-  //   return this.http.post('http://localhost:3000/api/forum', forum)
-
-  // }
-
   deletePost(postId: number): Observable<Forum> {
     return this.http.delete<Forum>('http://localhost:3000/api/forum/' + postId)
   }
