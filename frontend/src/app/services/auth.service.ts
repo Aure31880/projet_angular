@@ -7,7 +7,6 @@ import { HttpHeaders } from '@angular/common/http';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    // 'Authorization':
   })
 };
 
@@ -43,7 +42,7 @@ export class AuthService {
   }
 
   getUserByEmail(email: string) {
-    return this.http.get<any[]>('http://localhost:3000/api/auth/users/?=' + email)
+    return this.http.get<any[]>('http://localhost:3000/api/auth/users/' + email)
 
   }
 

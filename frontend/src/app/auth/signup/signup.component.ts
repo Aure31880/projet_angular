@@ -59,9 +59,11 @@ export class SignupComponent implements OnInit {
 
     this.authService.getUserByEmail(email)
       .subscribe(userExist => {
-        const userEmail = userExist.filter(el => el.email === email)
+        console.log('userExist');
+        console.log(userExist);
+        const userEmail = userExist
 
-        if (userEmail.length != 0) {
+        if (userEmail !== null) {
           Swal.fire({
             title: 'Erreur email',
             text: 'Email déjà utilisé !',

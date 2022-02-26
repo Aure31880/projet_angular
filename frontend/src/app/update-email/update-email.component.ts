@@ -39,7 +39,7 @@ export class UpdateEmailComponent implements OnInit {
     const confirmEmail = this.updateEmailForm.get('confirmEmail')?.value;
     const id = this.authService.getUserSession();
 
-    const idUser = id[0].userInfo[0].id;
+    const idUser = id[0].userInfo.id;
 
     let arrForUpdate = {
       idUser: idUser,
@@ -51,6 +51,7 @@ export class UpdateEmailComponent implements OnInit {
       this.authService.updateEmail(idUser, arrForUpdate)
         .subscribe(res => {
           Swal.fire('Adresse email modifié !')
+          return location.reload()
         })
     } else {
       Swal.fire('Email non similaire !')

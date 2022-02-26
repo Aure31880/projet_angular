@@ -38,21 +38,23 @@ export class ForumComponent implements OnInit {
 
   getSessionInfo() {
     const info = this.authService.getUserSession();
-    let arr = null;
-    for (let data of info[0].userInfo) {
-      const id = data.id;
-      const first = data.firstName;
-      const name = data.lastName;
-      const admin = data.admin;
+    console.log(info[0].userInfo);
 
-      arr = {
-        id: id,
-        firstName: first,
-        lastName: name,
-        admin: admin
-      }
-      this.session.push(arr)
-    }
+    // let arr = null;
+    // for (let data of info[0].userInfo) {
+    //   const id = data.id;
+    //   const first = data.firstName;
+    //   const name = data.lastName;
+    //   const admin = data.admin;
+
+    //   arr = {
+    //     id: id,
+    //     firstName: first,
+    //     lastName: name,
+    //     admin: admin
+    //   }
+    //   this.session.push(arr)
+    // }
   }
 
   onSubmitPost() {

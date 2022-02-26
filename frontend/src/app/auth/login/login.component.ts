@@ -39,9 +39,10 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         this.authService.getUserByEmail(email)
           .subscribe(user => {
-
+            console.log(user)
             if (user) {
-              const newSession = user.filter(el => el.email === email);
+              // const newSession = user.filter(el => el.email === email);
+              const newSession = user;
 
               const userCurrent = {
                 userInfo: newSession,
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
 
               this.authService.newUserSession(userCurrent)
               this.loginForm.reset();
-              this.router.navigate(['profile'])
+              this.router.navigate(['forum'])
             }
           }, error => {
             throw new Error('Bad request')

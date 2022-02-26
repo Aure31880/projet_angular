@@ -4,9 +4,9 @@
       <div class="card text-light bg-dark mb-3">
         <div class=" card-header">Informations personnelles</div>
         <div class="card-body">
-          <h5 class="card-title">Prénom: {{client.firstName}}</h5>
-          <h5 class="card-title">Nom: {{client.lastName}}</h5>
-          <p class="card-text">Email: {{client.email}}</p>
+          <h5 class="card-title">Prénom: {{client?.firstName}}</h5>
+          <h5 class="card-title">Nom: {{client?.lastName}}</h5>
+          <!-- <p class="card-text">Email: {{client.email}}</p> -->
           <button type="submit" class="btn btn-danger deletebtn" (click)="deleteAccount()">Supprimer compte</button>
         </div>
       </div>
@@ -59,7 +59,7 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-success width-input"
+                <button type="submit" class="btn btn-danger width-input"
                   [disabled]="!updatePassForm.valid">Modifier</button>
               </form>
             </div>

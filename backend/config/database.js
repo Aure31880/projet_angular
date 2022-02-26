@@ -1,11 +1,21 @@
-require('dotenv').config();
-const mysql = require('mysql2');
+// require('dotenv').config();
 
-const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD
-});
+// var Sequelize = require('sequelize')
+// var sequelize = new Sequelize(
+//     process.env.DB_NAME,
+//     process.env.DB_USER,
+//     process.env.DB_PASSWORD,
+//     {
+//         host: process.env.DB_HOST,
+//         dialect: "mysql"
+//     }
+// );
 
-module.exports = pool.promise();
+// try {
+//     sequelize.authenticate();
+//     console.log("connexion reussi");
+// } catch (error) {
+//     console.log("connexion pas reussi");
+// }
+
+// module.exports = sequelize;

@@ -37,9 +37,12 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserInfo() {
+    let arrUser = []
     const userInfo = this.authService.getUserSession();
-    this.user = userInfo[0].userInfo;
-
+    const user = userInfo[0].userInfo;
+    arrUser.push(user)
+    this.user = arrUser
+    console.log(this.user)
   }
 
   deleteAccount() {
@@ -79,7 +82,8 @@ export class ProfileComponent implements OnInit {
     const newPass = this.updatePassForm.get('newPassword')?.value;
     const confirmPass = this.updatePassForm.get('confirmPassword')?.value;
     const id = this.authService.getUserSession();
-    const idUser = id[0].userInfo[0].id;
+    const idUser = id[0].userInfo.id;
+
     let arrForUpdate = {
       idUser: idUser,
       oldPassord: oldPass,
@@ -91,6 +95,7 @@ export class ProfileComponent implements OnInit {
       this.authService.updatePass(idUser, oldPass, newPass)
         .subscribe(res => {
           Swal.fire('Mot de passe modifié !')
+          return location.reload()
         })
     } else {
       Swal.fire('Les mots de passe ne sont pas identiques !')
