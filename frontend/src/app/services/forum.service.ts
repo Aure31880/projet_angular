@@ -21,14 +21,22 @@ export class ForumService {
   getAllPost(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:3000/api/forum')
       .pipe(map(data => {
+        console.log(data)
         return data;
       }),
         tap((postUser: any) => console.log(postUser))
       )
   }
 
-  createPost(forum: Forum) {
-    return this.http.post<Forum>('http://localhost:3000/api/forum', forum);
+  createPost(forum: Forum, image: File) {
+    const postData = new FormData()
+    postData.append('forum', JSON.stringify(forum));
+    console.log(forum);
+
+    postData.append('image', image);
+    console.log(postData);
+
+    return this.http.post<Forum>('http://localhost:3000/api/forum', postData);
   }
 
   deletePost(postId: number): Observable<Forum> {

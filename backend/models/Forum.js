@@ -1,25 +1,26 @@
-// const Sequelize = require('sequelize');
-// const sequelize = require('../config/database');
+const Sequelize = require('sequelize');
+const sequelize = require('../config/database');
 // const mysql = require('mysql2');
 require('dotenv').config();
+const User = require('./User');
 
-var Sequelize = require('sequelize')
-var sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-        host: process.env.DB_HOST,
-        dialect: "mysql"
-    }
-);
+// var Sequelize = require('sequelize')
+// var sequelize = new Sequelize(
+//     process.env.DB_NAME,
+//     process.env.DB_USER,
+//     process.env.DB_PASSWORD,
+//     {
+//         host: process.env.DB_HOST,
+//         dialect: "mysql"
+//     }
+// );
 
-try {
-    sequelize.authenticate();
-    console.log("connexion reussi");
-} catch (error) {
-    console.log("connexion pas reussi");
-}
+// try {
+//     sequelize.authenticate();
+//     console.log("connexion reussi");
+// } catch (error) {
+//     console.log("connexion pas reussi");
+// }
 
 const Forum = sequelize.define("forum", {
 
@@ -37,17 +38,29 @@ const Forum = sequelize.define("forum", {
         type: Sequelize.TEXT,
         allowNull: true
     },
-    date: {
-        type: Sequelize.DATE,
-        allowNull: false
-    },
     imageUrl: {
         type: Sequelize.STRING,
         allowNull: true
-    }
+    },
 });
+// Forum.hasMany(users, {
+//     targetKey: 'id'
+// });
+// Forum.associate = (models) => {
+//     Forum.hasMany(models.users, {
+//         foreignKey: 'idUser'
+//     });
+// }
 
-module.exports = Forum;
+// Forum.belongsTo(User.User, {
+//     targetKey: 'idUser'
+// });
+
+// Forum.sync({
+//     alter: true
+// });
+
+module.exports.Forum = Forum;
 
 // class Forum {
 //     constructor() { }

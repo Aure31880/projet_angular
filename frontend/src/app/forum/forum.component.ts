@@ -17,6 +17,7 @@ export class ForumComponent implements OnInit {
   forum!: Forum[] | [];
   session = Array();
   imagePreview!: string;
+  file!: File;
 
 
   constructor(
@@ -28,17 +29,26 @@ export class ForumComponent implements OnInit {
   commentList = this.forumService.getAllPost();
 
   ngOnInit(): void {
+    const test = this.forumService.getAllPost();
+    console.log(test);
+
     this.authService.getToken()
     this.isAdminDeleteBtn()
     this.getSessionInfo();
     this.postComment = this.fb.group({
       comment: [''],
+      imageUrl: ['']
     });
   }
 
   getSessionInfo() {
+    let arrSession = [];
     const info = this.authService.getUserSession();
     console.log(info[0].userInfo);
+    const infoUser = info[0].userInfo;
+    arrSession.push(infoUser);
+    this.session = arrSession;
+    console.log(this.session);
 
     // let arr = null;
     // for (let data of info[0].userInfo) {
@@ -60,30 +70,88 @@ export class ForumComponent implements OnInit {
   onSubmitPost() {
     let arrPostToSend = null;
     const comment = this.postComment.get('comment')?.value;
-    const imageUrl = this.postComment.get('image')?.value;
+    const imageUrl = this.postComment.get('imageUrl')?.value;
+    const imageFile = this.file;
+
+    console.log(imageFile);
+
 
     const user = this.session;
-    for (let el of user) {
-      const idUser = el.id;
-      arrPostToSend = {
-        idUser: idUser,
-        comment: comment,
-      }
-      this.forumService.createPost(arrPostToSend)
-        .subscribe(res => {
-          Swal.fire({
-            icon: "success",
-            title: "Ajout commentaire",
-            text: "Votre commentaire à bien été ajouté",
-            timer: 3000
-          })
-          return location.reload()
-        })
+    console.log(user);
+
+    const idUser = user[0].id;
+    console.log(idUser);
+    arrPostToSend = {
+      idUser: idUser,
+      comment: comment,
+      imageUrl: imageFile.name
     }
+    this.forumService.createPost(arrPostToSend, imageFile)
+      .subscribe((res: any) => {
+        Swal.fire({
+          icon: "success",
+          title: "Ajout commentaire",
+          text: "Votre commentaire à bien été ajouté",
+          timer: 3000
+        })
+        return location.reload()
+      })
+    // for (let el of user) {
+    //   const idUser = el.id;
+    //   arrPostToSend = {
+    //     idUser: idUser,
+    //     comment: comment,
+    //   }
+    //   this.forumService.createPost(arrPostToSend)
+    //     .subscribe(res => {
+    //       Swal.fire({
+    //         icon: "success",
+    //         title: "Ajout commentaire",
+    //         text: "Votre commentaire à bien été ajouté",
+    //         timer: 3000
+    //       })
+    //       return location.reload()
+    //     })
+    // }
   }
+
+  onImagePick(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    // console.log(file);
+
+    if (file) {
+      this.file = file
+    }
+    //   // this.file = file;
+    //   this.postComment.get('imageUrl')?.patchValue(file?.name);
+    //   this.postComment.get('imageUrl')?.updateValueAndValidity();
+    //   const reader = new FileReader();
+    //   reader.onload = () => {
+    //     console.log(reader);
+
+    //     if (this.postComment.get('imageUrl')?.valid) {
+    //       this.imagePreview = reader.result as string;
+    //     }
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
+
+  }
+
+  //   this.postComment.get('imageUrl')?.patchValue(file);
+  //   this.postComment.get('imageUrl')?.updateValueAndValidity();
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     if (this.postComment.get('imageUrl')?.valid) {
+  //       this.imagePreview = reader.result as string;
+  //     }
+  //   };
+  //   reader.readAsDataURL(file);
+  // }
 
   isAdminDeleteBtn() {
     const userSession = this.authService.getUserSession();
+    console.log(userSession);
 
     const isAdmin = userSession[0].admin;
     if (isAdmin === 1) {

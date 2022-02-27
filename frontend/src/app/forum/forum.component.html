@@ -13,6 +13,11 @@
           <span class="input-group-text">Commentaire :</span>
           <textarea class="form-control" name="comment" aria-label="With textarea" formControlName="comment"></textarea>
         </div>
+        <input class="file" type="file" accept=".jpg, .jpeg, .png, .gif, .mp4" (change)="onImagePick($event)"
+          formControlName="imageUrl">
+        <div class="image-preview" *ngIf="imagePreview">
+          <img [src]="imagePreview" alt="">
+        </div>
         <button type="submit" class="btn btn-danger marginTop-btn" id="sendComment"
           [disabled]="!postComment.valid">Envoyer</button>
       </div>
@@ -21,11 +26,13 @@
 
   <!-- SECTION COMMENTS -->
   <h3 class="title-forum-page text-center">Derniers commentaires</h3>
-  <div class="comments" *ngFor="let comment of commentList | async ">
+  <div class="comments" *ngFor="let comment of commentList | async">
     <div class="card">
-      <h5 class="card-header">Posté le : {{comment.date | date: 'd/M/yy, h:m a'}}</h5>
+      <h5 class="card-header">Posté le : {{comment.createdAt | date: 'd/M/yy, h:m a'}}</h5>
       <div class="card-body">
-        <h5 class="card-title">De : {{comment.firstName}} {{comment.lastName}}</h5>
+        <h5 class="card-title">De : {{comment.user.firstName}}
+          {{comment.user.lastName}}</h5>
+        <img class="postImg" *ngIf="comment.imageUrl !== null" src="{{ comment.imageUrl }}">
         <p class="card-text">{{comment.comment}}</p>
       </div>
       <div class="" *ngIf="info.id == comment.idUser || info.admin === 1">

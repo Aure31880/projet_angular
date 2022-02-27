@@ -129,17 +129,9 @@ exports.updatePassword = (req, res, next) => {
 }
 
 exports.updateEmail = (req, res, next) => {
-    console.log(req.body);
     const oldEmail = MD5(req.body.infoToUpdate.email).toString();
-    console.log('oldEmail');
-    console.log(oldEmail);
     const emailToCheck = MD5(req.body.infoToUpdate.newEmail).toString();
-    console.log('emailToCheck');
-    console.log(emailToCheck);
     const idUser = req.body.infoToUpdate.idUser;
-    console.log('idUser');
-    console.log(idUser);
-
     // let infoForUpdate = [emailToCheck, idUser]
     User.User.findOne({ where: { email: oldEmail } })
         .then(result => {
@@ -156,6 +148,29 @@ exports.updateEmail = (req, res, next) => {
         })
         .catch(error => res.status(500).josn({ error }));
 }
+
+exports.deleteUserAccount = async (req, res) => {
+    if (!req.params.id) {
+        res.status(400).send(new Error('Bad request !'))
+    }
+    const id = req.params.id;
+
+    await User.User.findOne({ where: { id: id } })
+        .then(result => {
+            if (!result) {
+                res.status(400).send(new Error('Id does not exist !'))
+            } else {
+                const idUser = result.id;
+                User.User.destroy({ where: { id: idUser } })
+                    .then(() => res.status(200).json({ message: "Account ha  s been deleted !" }))
+                    .catch(error => res.status(400).json(error));
+            }
+        })
+        .catch(error => res.status(500).json(error))
+}
+
+
+// SAVE
 
 // exports.login = (req, res, next) => {
 //     if (!req.body.email || !req.body.password) {

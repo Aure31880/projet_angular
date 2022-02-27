@@ -1,25 +1,26 @@
-// const sequelize = require("../config/database");
-// const Sequelize = require("sequelize")
+const sequelize = require("../config/database");
+const Sequelize = require("sequelize")
 // const mysql = require("mysql2");
 require('dotenv').config();
+const Forum = require('./Forum');
 
-var Sequelize = require('sequelize')
-var sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-        host: process.env.DB_HOST,
-        dialect: "mysql"
-    }
-);
+// var Sequelize = require('sequelize')
+// var sequelize = new Sequelize(
+//     process.env.DB_NAME,
+//     process.env.DB_USER,
+//     process.env.DB_PASSWORD,
+//     {
+//         host: process.env.DB_HOST,
+//         dialect: "mysql"
+//     }
+// );
 
-try {
-    sequelize.authenticate();
-    console.log("connexion reussi");
-} catch (error) {
-    console.log("connexion pas reussi");
-}
+// try {
+//     sequelize.authenticate();
+//     console.log("connexion reussi");
+// } catch (error) {
+//     console.log("connexion pas reussi");
+// }
 
 const User = sequelize.define("user", {
 
@@ -50,14 +51,21 @@ const User = sequelize.define("user", {
         allowNull: true,
         defaultValue: false
     },
-
 });
+
+// User.associate = (models) => {
+//     User.belongsTo(models.forums, {
+//         targetKey: 'idUser'
+//     })
+// }
+
+
 
 // User.sync({
 //     alter: true
 // });
 
-exports.User = User;
+module.exports.User = User;
 
 // class User {
 //     constructor() { }
