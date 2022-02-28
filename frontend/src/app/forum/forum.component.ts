@@ -44,27 +44,10 @@ export class ForumComponent implements OnInit {
   getSessionInfo() {
     let arrSession = [];
     const info = this.authService.getUserSession();
-    console.log(info[0].userInfo);
     const infoUser = info[0].userInfo;
     arrSession.push(infoUser);
     this.session = arrSession;
-    console.log(this.session);
 
-    // let arr = null;
-    // for (let data of info[0].userInfo) {
-    //   const id = data.id;
-    //   const first = data.firstName;
-    //   const name = data.lastName;
-    //   const admin = data.admin;
-
-    //   arr = {
-    //     id: id,
-    //     firstName: first,
-    //     lastName: name,
-    //     admin: admin
-    //   }
-    //   this.session.push(arr)
-    // }
   }
 
   onSubmitPost() {
@@ -72,15 +55,8 @@ export class ForumComponent implements OnInit {
     const comment = this.postComment.get('comment')?.value;
     const imageUrl = this.postComment.get('imageUrl')?.value;
     const imageFile = this.file;
-
-    console.log(imageFile);
-
-
     const user = this.session;
-    console.log(user);
-
     const idUser = user[0].id;
-    console.log(idUser);
     arrPostToSend = {
       idUser: idUser,
       comment: comment,
@@ -96,58 +72,14 @@ export class ForumComponent implements OnInit {
         })
         return location.reload()
       })
-    // for (let el of user) {
-    //   const idUser = el.id;
-    //   arrPostToSend = {
-    //     idUser: idUser,
-    //     comment: comment,
-    //   }
-    //   this.forumService.createPost(arrPostToSend)
-    //     .subscribe(res => {
-    //       Swal.fire({
-    //         icon: "success",
-    //         title: "Ajout commentaire",
-    //         text: "Votre commentaire à bien été ajouté",
-    //         timer: 3000
-    //       })
-    //       return location.reload()
-    //     })
-    // }
   }
 
   onImagePick(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
-    // console.log(file);
-
     if (file) {
       this.file = file
     }
-    //   // this.file = file;
-    //   this.postComment.get('imageUrl')?.patchValue(file?.name);
-    //   this.postComment.get('imageUrl')?.updateValueAndValidity();
-    //   const reader = new FileReader();
-    //   reader.onload = () => {
-    //     console.log(reader);
-
-    //     if (this.postComment.get('imageUrl')?.valid) {
-    //       this.imagePreview = reader.result as string;
-    //     }
-    //   };
-    //   reader.readAsDataURL(file);
-    // }
-
   }
-
-  //   this.postComment.get('imageUrl')?.patchValue(file);
-  //   this.postComment.get('imageUrl')?.updateValueAndValidity();
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     if (this.postComment.get('imageUrl')?.valid) {
-  //       this.imagePreview = reader.result as string;
-  //     }
-  //   };
-  //   reader.readAsDataURL(file);
-  // }
 
   isAdminDeleteBtn() {
     const userSession = this.authService.getUserSession();

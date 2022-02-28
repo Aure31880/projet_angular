@@ -50,28 +50,3 @@ exports.deletePost = async (req, res, next) => {
         .catch(error => res.status(400).json(error))
 
 }
-
-//     const idUser = req.body.idUser;
-//     const comment = req.body.comment;
-//     const arrCommenttoSend = {
-//         idUser: idUser,
-//         comment: comment,
-//         date: new Date(),
-//         imageUrl: null
-//     }
-
-//     await Forum.Forum.create(arrCommenttoSend)
-//         .then(() => res.status(201).json({ message: "Votre message à bien été envoyé !" }))
-//         .catch(() => res.status(400).json({ message: "Erreur lors de l'envoie du commentaire !" }));
-// }
-
-// exports.deletePost = (req, res, next) => {
-//     if (!req.params.id) {
-//         return res.status(400).send(new Error('Bad Request !'))
-//     }
-//     const postId = req.params.id;
-//     forumService.deletePost(postId)
-//         .then(() => res.status(201).json({ message: "Commentaire supprimé !" }))
-//         .catch(error => res.status(400).json(error))
-
-// }

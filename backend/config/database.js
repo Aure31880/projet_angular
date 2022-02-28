@@ -17,6 +17,5 @@ try {
 } catch (error) {
     console.log("connexion pas reussi");
 }
-// var exports = module.exports = {};
-// exports.sequelize = sequelize;
+
 module.exports = sequelize;
