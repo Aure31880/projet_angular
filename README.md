@@ -19,7 +19,9 @@ Run nodmeon serve
 # ** Packages to install: **
 
 sequelize: npm install sequelize
+
 bcrypt: npm install bcrypt
+
 Crypto-js: npm install crypto-js
 
 
