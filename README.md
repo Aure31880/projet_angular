@@ -1,6 +1,6 @@
 # projet_angular
 
-Front-end:
+** Front-end: **
 
 You must have npm and the Angular CLI installed.
 
