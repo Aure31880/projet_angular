@@ -26,4 +26,8 @@ const Forum = sequelize.define("forum", {
     },
 });
 
+Forum.sync({
+    alter: true
+});
+
 module.exports.Forum = Forum;
